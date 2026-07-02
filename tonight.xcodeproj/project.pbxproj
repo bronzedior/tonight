@@ -39,6 +39,12 @@
 		3561AB392FF6275300784181 /* Tonight watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tonight watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3561AB452FF6275400784181 /* Tonight watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tonight watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3561AB5B2FF627A500784181 /* Tonight watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tonight watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35B4A5CD2FF63D5E002F1522 /* tonightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tonightApp.swift; sourceTree = "<group>"; };
+		35B4A5CE2FF63D70002F1522 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		35B4A5D52FF63D9D002F1522 /* TonightWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonightWatchApp.swift; sourceTree = "<group>"; };
+		35B4A5D72FF63DBE002F1522 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		35B4A5DD2FF63DE2002F1522 /* RiskLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskLevel.swift; sourceTree = "<group>"; };
+		35B4A5DE2FF63DF1002F1522 /* RiskScoringEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskScoringEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -89,6 +95,8 @@
 		3561AB1E2FF625D700784181 = {
 			isa = PBXGroup;
 			children = (
+				35B4A5DC2FF63DD9002F1522 /* Shared */,
+				35B4A5D42FF63D95002F1522 /* Watch */,
 				3561AB782FF63B3C00784181 /* IOS */,
 				3561AB292FF625D700784181 /* tonight */,
 				3561AB5C2FF627A500784181 /* Tonight watch Watch App */,
@@ -110,6 +118,7 @@
 		3561AB722FF63B3C00784181 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				35B4A5CD2FF63D5E002F1522 /* tonightApp.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -131,6 +140,7 @@
 		3561AB752FF63B3C00784181 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				35B4A5CE2FF63D70002F1522 /* HealthKitManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -160,6 +170,96 @@
 				3561AB772FF63B3C00784181 /* Services */,
 			);
 			path = IOS;
+			sourceTree = "<group>";
+		};
+		35B4A5CF2FF63D95002F1522 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				35B4A5D52FF63D9D002F1522 /* TonightWatchApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		35B4A5D02FF63D95002F1522 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		35B4A5D12FF63D95002F1522 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				35B4A5D72FF63DBE002F1522 /* MotionManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		35B4A5D22FF63D95002F1522 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		35B4A5D32FF63D95002F1522 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		35B4A5D42FF63D95002F1522 /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				35B4A5CF2FF63D95002F1522 /* App */,
+				35B4A5D02FF63D95002F1522 /* Features */,
+				35B4A5D12FF63D95002F1522 /* Managers */,
+				35B4A5D22FF63D95002F1522 /* Resources */,
+				35B4A5D32FF63D95002F1522 /* Services */,
+			);
+			path = Watch;
+			sourceTree = "<group>";
+		};
+		35B4A5D82FF63DD9002F1522 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				35B4A5DE2FF63DF1002F1522 /* RiskScoringEngine.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		35B4A5D92FF63DD9002F1522 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
+		35B4A5DA2FF63DD9002F1522 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				35B4A5DD2FF63DE2002F1522 /* RiskLevel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		35B4A5DB2FF63DD9002F1522 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		35B4A5DC2FF63DD9002F1522 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				35B4A5D82FF63DD9002F1522 /* Engine */,
+				35B4A5D92FF63DD9002F1522 /* Extentions */,
+				35B4A5DA2FF63DD9002F1522 /* Models */,
+				35B4A5DB2FF63DD9002F1522 /* Utilities */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
