@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		3561AB462FF6275400784181 /* Tonight watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3561AB452FF6275400784181 /* Tonight watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		35B4A5C42FF63CCC002F1522 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B4A5C12FF63CCC002F1522 /* Assets.xcassets */; };
+		35B4A5C52FF63CCC002F1522 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C22FF63CCC002F1522 /* RootView.swift */; };
+		35B4A5C62FF63CCC002F1522 /* tonightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C32FF63CCC002F1522 /* tonightApp.swift */; };
+		35B4A5CA2FF63CCC002F1522 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B4A5C72FF63CCC002F1522 /* Assets.xcassets */; };
+		35B4A5CB2FF63CCC002F1522 /* MonitoringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C82FF63CCC002F1522 /* MonitoringView.swift */; };
+		35B4A5CC2FF63CCC002F1522 /* Tonight_watchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C92FF63CCC002F1522 /* Tonight_watchApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,26 +45,17 @@
 		3561AB392FF6275300784181 /* Tonight watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tonight watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3561AB452FF6275400784181 /* Tonight watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tonight watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3561AB5B2FF627A500784181 /* Tonight watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tonight watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		35B4A5CD2FF63D5E002F1522 /* tonightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tonightApp.swift; sourceTree = "<group>"; };
+		35B4A5C12FF63CCC002F1522 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		35B4A5C22FF63CCC002F1522 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		35B4A5C32FF63CCC002F1522 /* tonightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tonightApp.swift; sourceTree = "<group>"; };
+		35B4A5C72FF63CCC002F1522 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		35B4A5C82FF63CCC002F1522 /* MonitoringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoringView.swift; sourceTree = "<group>"; };
+		35B4A5C92FF63CCC002F1522 /* Tonight_watchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tonight_watchApp.swift; sourceTree = "<group>"; };
 		35B4A5CE2FF63D70002F1522 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
-		35B4A5D52FF63D9D002F1522 /* TonightWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonightWatchApp.swift; sourceTree = "<group>"; };
 		35B4A5D72FF63DBE002F1522 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		35B4A5DD2FF63DE2002F1522 /* RiskLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskLevel.swift; sourceTree = "<group>"; };
 		35B4A5DE2FF63DF1002F1522 /* RiskScoringEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskScoringEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		3561AB292FF625D700784181 /* tonight */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = tonight;
-			sourceTree = "<group>";
-		};
-		3561AB5C2FF627A500784181 /* Tonight watch Watch App */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Tonight watch Watch App";
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		3561AB242FF625D700784181 /* Frameworks */ = {
@@ -98,8 +95,6 @@
 				35B4A5DC2FF63DD9002F1522 /* Shared */,
 				35B4A5D42FF63D95002F1522 /* Watch */,
 				3561AB782FF63B3C00784181 /* IOS */,
-				3561AB292FF625D700784181 /* tonight */,
-				3561AB5C2FF627A500784181 /* Tonight watch Watch App */,
 				3561AB282FF625D700784181 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -118,7 +113,8 @@
 		3561AB722FF63B3C00784181 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				35B4A5CD2FF63D5E002F1522 /* tonightApp.swift */,
+				35B4A5C32FF63CCC002F1522 /* tonightApp.swift */,
+				35B4A5C22FF63CCC002F1522 /* RootView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -148,6 +144,7 @@
 		3561AB762FF63B3C00784181 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				35B4A5C12FF63CCC002F1522 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -175,7 +172,8 @@
 		35B4A5CF2FF63D95002F1522 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				35B4A5D52FF63D9D002F1522 /* TonightWatchApp.swift */,
+				35B4A5C92FF63CCC002F1522 /* Tonight_watchApp.swift */,
+				35B4A5C82FF63CCC002F1522 /* MonitoringView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -198,6 +196,7 @@
 		35B4A5D22FF63D95002F1522 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				35B4A5C72FF63CCC002F1522 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -277,9 +276,6 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				3561AB292FF625D700784181 /* tonight */,
-			);
 			name = tonight;
 			packageProductDependencies = (
 			);
@@ -339,9 +335,6 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				3561AB5C2FF627A500784181 /* Tonight watch Watch App */,
-			);
 			name = "Tonight watch Watch App";
 			packageProductDependencies = (
 			);
@@ -400,6 +393,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B4A5C42FF63CCC002F1522 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +415,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B4A5CA2FF63CCC002F1522 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +426,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B4A5C52FF63CCC002F1522 /* RootView.swift in Sources */,
+				35B4A5C62FF63CCC002F1522 /* tonightApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +449,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B4A5CB2FF63CCC002F1522 /* MonitoringView.swift in Sources */,
+				35B4A5CC2FF63CCC002F1522 /* Tonight_watchApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
