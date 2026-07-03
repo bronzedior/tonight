@@ -57,6 +57,14 @@
 		35B4A5DE2FF63DF1002F1522 /* RiskScoringEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskScoringEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		35DA82B52FF74992001EC78E /* Onboarding */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		3561AB242FF625D700784181 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -119,16 +127,17 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		3561AB732FF63B3C00784181 /* Components */ = {
+		3561AB732FF63B3C00784181 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Components;
+			path = UIComponents;
 			sourceTree = "<group>";
 		};
 		3561AB742FF63B3C00784181 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				35DA82B52FF74992001EC78E /* Onboarding */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -160,7 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				3561AB722FF63B3C00784181 /* App */,
-				3561AB732FF63B3C00784181 /* Components */,
+				3561AB732FF63B3C00784181 /* UIComponents */,
 				3561AB742FF63B3C00784181 /* Features */,
 				3561AB752FF63B3C00784181 /* Managers */,
 				3561AB762FF63B3C00784181 /* Resources */,
@@ -228,11 +237,11 @@
 			path = Engine;
 			sourceTree = "<group>";
 		};
-		35B4A5D92FF63DD9002F1522 /* Extentions */ = {
+		35B4A5D92FF63DD9002F1522 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Extentions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		35B4A5DA2FF63DD9002F1522 /* Models */ = {
@@ -254,7 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				35B4A5D82FF63DD9002F1522 /* Engine */,
-				35B4A5D92FF63DD9002F1522 /* Extentions */,
+				35B4A5D92FF63DD9002F1522 /* Extensions */,
 				35B4A5DA2FF63DD9002F1522 /* Models */,
 				35B4A5DB2FF63DD9002F1522 /* Utilities */,
 			);
@@ -275,6 +284,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				35DA82B52FF74992001EC78E /* Onboarding */,
 			);
 			name = tonight;
 			packageProductDependencies = (
@@ -350,7 +362,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2650;
-				LastUpgradeCheck = 2650;
+				LastUpgradeCheck = 2660;
 				TargetAttributes = {
 					3561AB262FF625D700784181 = {
 						CreatedOnToolsVersion = 26.5;
@@ -499,6 +511,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 47T6L682CY;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -522,6 +535,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -561,6 +575,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 47T6L682CY;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -577,6 +592,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
@@ -588,6 +604,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 47T6L682CY;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -632,6 +649,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 47T6L682CY;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;

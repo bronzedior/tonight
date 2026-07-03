@@ -7,18 +7,20 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct RootView: View {
+    
+    @AppStorage("hasCompletedOnboarding")
+    private var hasCompletedOnboarding = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        if hasCompletedOnboarding {
+            Text("Home")
+        } else {
+            OnboardingView()
         }
-        .padding()
     }
 }
 
 #Preview {
-    ContentView()
+    RootView()
 }
