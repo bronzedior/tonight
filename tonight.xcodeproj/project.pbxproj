@@ -11,6 +11,9 @@
 		35B4A5C42FF63CCC002F1522 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B4A5C12FF63CCC002F1522 /* Assets.xcassets */; };
 		35B4A5C52FF63CCC002F1522 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C22FF63CCC002F1522 /* RootView.swift */; };
 		35B4A5C62FF63CCC002F1522 /* tonightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C32FF63CCC002F1522 /* tonightApp.swift */; };
+		35B4A5CA2FF63CCC002F1522 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B4A5C72FF63CCC002F1522 /* Assets.xcassets */; };
+		35B4A5CB2FF63CCC002F1522 /* MonitoringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C82FF63CCC002F1522 /* MonitoringView.swift */; };
+		35B4A5CC2FF63CCC002F1522 /* Tonight_watchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C92FF63CCC002F1522 /* Tonight_watchApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +48,11 @@
 		35B4A5C12FF63CCC002F1522 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35B4A5C22FF63CCC002F1522 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		35B4A5C32FF63CCC002F1522 /* tonightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tonightApp.swift; sourceTree = "<group>"; };
+		35B4A5C72FF63CCC002F1522 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		35B4A5C82FF63CCC002F1522 /* MonitoringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoringView.swift; sourceTree = "<group>"; };
+		35B4A5C92FF63CCC002F1522 /* Tonight_watchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tonight_watchApp.swift; sourceTree = "<group>"; };
 		35B4A5CE2FF63D70002F1522 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		35B4A5D72FF63DBE002F1522 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		35B4A5DD2FF63DE2002F1522 /* RiskLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskLevel.swift; sourceTree = "<group>"; };
 		35B4A5DE2FF63DF1002F1522 /* RiskScoringEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskScoringEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -171,9 +178,53 @@
 			path = IOS;
 			sourceTree = "<group>";
 		};
+		35B4A5CF2FF63D95002F1522 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				35B4A5C92FF63CCC002F1522 /* Tonight_watchApp.swift */,
+				35B4A5C82FF63CCC002F1522 /* MonitoringView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		35B4A5D02FF63D95002F1522 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		35B4A5D12FF63D95002F1522 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				35B4A5D72FF63DBE002F1522 /* MotionManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		35B4A5D22FF63D95002F1522 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				35B4A5C72FF63CCC002F1522 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		35B4A5D32FF63D95002F1522 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		35B4A5D42FF63D95002F1522 /* Watch */ = {
 			isa = PBXGroup;
 			children = (
+				35B4A5CF2FF63D95002F1522 /* App */,
+				35B4A5D02FF63D95002F1522 /* Features */,
+				35B4A5D12FF63D95002F1522 /* Managers */,
+				35B4A5D22FF63D95002F1522 /* Resources */,
+				35B4A5D32FF63D95002F1522 /* Services */,
 			);
 			path = Watch;
 			sourceTree = "<group>";
@@ -376,6 +427,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B4A5CA2FF63CCC002F1522 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +461,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B4A5CB2FF63CCC002F1522 /* MonitoringView.swift in Sources */,
+				35B4A5CC2FF63CCC002F1522 /* Tonight_watchApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,7 +650,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 47T6L682CY;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -673,7 +727,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 47T6L682CY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Tonight watch";
@@ -742,7 +796,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 47T6L682CY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Tonight watch";
@@ -811,7 +865,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 47T6L682CY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Tonight watch";
