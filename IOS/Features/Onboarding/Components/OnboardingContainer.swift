@@ -15,11 +15,13 @@ struct OnboardingContainer<Header: View, Content: View>: View {
     let header: Header
     let buttonTitle: String
     let buttonAction: () -> Void
+    let isButtonEnabled: Bool
 
     init(
         title: String,
         subtitle: String,
         buttonTitle: String,
+        isButtonEnabled: Bool = true,
         @ViewBuilder header: () -> Header,
         @ViewBuilder content: () -> Content,
         buttonAction: @escaping () -> Void
@@ -30,6 +32,7 @@ struct OnboardingContainer<Header: View, Content: View>: View {
         self.header = header()
         self.content = content()
         self.buttonAction = buttonAction
+        self.isButtonEnabled = isButtonEnabled
     }
 
     var body: some View {
@@ -73,6 +76,8 @@ struct OnboardingContainer<Header: View, Content: View>: View {
                     title: buttonTitle,
                     action: buttonAction
                 )
+                .disabled(!isButtonEnabled)
+                .opacity(isButtonEnabled ? 1 : 0.5)
             }
             .padding(.horizontal,24)
             .padding(.bottom,40)

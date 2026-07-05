@@ -18,6 +18,7 @@ struct NameInputView: View {
             title: "What Should I call you?",
             subtitle: "We'll use your name to personalize your experience",
             buttonTitle: "Continue",
+            isButtonEnabled: !viewModel.username.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
             header: {
                 Image(systemName: "person.crop.circle")
                     .font(.system(size: 60))
@@ -36,7 +37,6 @@ struct NameInputView: View {
             buttonAction: {
                 viewModel.next()
             }
-            
         )
 
     }

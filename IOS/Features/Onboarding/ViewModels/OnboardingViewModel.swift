@@ -16,6 +16,8 @@ final class OnboardingViewModel: ObservableObject {
     @Published var watchConnected = false
     @Published var healthPermissionGranted = false
     
+    @Published var showPermissionDenied = false
+    
     func next() {
         guard currentStep < 5 else {return }
         currentStep += 1

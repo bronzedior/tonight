@@ -12,21 +12,27 @@ struct FinishView: View {
     @ObservedObject
     var viewModel: OnboardingViewModel
 
+    @AppStorage("hasCompletedOnboarding")
+    private var hasCompletedOnboarding = false
+
     var body: some View {
 
-        VStack {
+        OnboardingContainer(
 
-            Spacer()
-
-            Text("You're all set!")
-
-            Spacer()
-
-            PrimaryButton(title: "Start Monitoring") {
-                viewModel.next()
+            title: "You're all set!",
+            subtitle: "Tonight is ready to help you stay safe while drinking.",
+            buttonTitle: "Start Using Tonight",
+            header: {
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.system(size: 90))
+                    .foregroundStyle(.green)
+            },
+            content: {
+                
+            },
+            buttonAction: {
+                hasCompletedOnboarding = true
             }
-
-        }
+        )
     }
-
 }

@@ -1,18 +1,12 @@
-//
-//  HealthKitManager.swift
-//  tonight
-//
-//  Created by Yuki Damanik on 02/07/26.
-//
+import Foundation
+import HealthKit
 
 import HealthKit
 
 final class HealthKitManager {
 
     static let shared = HealthKitManager()
-
     private let healthStore = HKHealthStore()
-
     private init() {}
     
     func requestAuthorization(

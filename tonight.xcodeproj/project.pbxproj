@@ -42,6 +42,7 @@
 		3561AB392FF6275300784181 /* Tonight watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tonight watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3561AB452FF6275400784181 /* Tonight watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tonight watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3561AB5B2FF627A500784181 /* Tonight watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tonight watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35A576A62FFA8F74002F9160 /* tonight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tonight.entitlements; sourceTree = "<group>"; };
 		35B4A5C12FF63CCC002F1522 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35B4A5C22FF63CCC002F1522 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		35B4A5C32FF63CCC002F1522 /* tonightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tonightApp.swift; sourceTree = "<group>"; };
@@ -109,6 +110,7 @@
 		3561AB1E2FF625D700784181 = {
 			isa = PBXGroup;
 			children = (
+				35A576A62FFA8F74002F9160 /* tonight.entitlements */,
 				35B4A5DC2FF63DD9002F1522 /* Shared */,
 				35B4A5D42FF63D95002F1522 /* Watch */,
 				3561AB782FF63B3C00784181 /* IOS */,
@@ -568,6 +570,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = tonight.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -577,6 +580,8 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Tonight uses your heart rate and walking metrics to estimate your impairment level while drinking.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Tonight writes your drinking session information to Apple Health only with your permission.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -613,6 +618,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = tonight.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -622,6 +628,8 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Tonight uses your heart rate and walking metrics to estimate your impairment level while drinking.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Tonight writes your drinking session information to Apple Health only with your permission.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

@@ -14,18 +14,55 @@ struct ConnectWatchView: View {
 
     var body: some View {
 
-        VStack {
+        OnboardingContainer(
 
-            Spacer()
+            title: "Works seamlessly with your Apple Watch",
 
-            Text("Connect Apple Watch")
+            subtitle: "Tonight automatically monitors your body signals from your Apple Watch while you're drinking. Just wear your watch and we'll do the rest.",
 
-            Spacer()
+            buttonTitle: "Continue",
 
-            PrimaryButton(title: "Continue") {
+            header: {
+
+                Image(systemName: "applewatch.side.right")
+                    .font(.system(size: 80))
+                    .foregroundStyle(.white)
+
+            },
+
+            content: {
+
+                VStack(alignment: .leading, spacing: 16) {
+
+                    Label("Continuous heart rate monitoring",
+                          systemImage: "heart.fill")
+
+                    Label("Walking stability detection",
+                          systemImage: "figure.walk")
+
+                    Label("Real-time intoxication estimation",
+                          systemImage: "waveform.path.ecg")
+
+                }
+                .font(.callout)
+                .foregroundStyle(.white)
+
+            },
+
+            buttonAction: {
+
                 viewModel.next()
+
             }
 
-        }
+        )
+
     }
+
+}
+
+#Preview {
+    
+    ConnectWatchView(viewModel: OnboardingViewModel())
+    
 }
