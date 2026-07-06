@@ -72,3 +72,7 @@ struct HealthPermissionView: View {
     }
 
 }
+
+#Preview {
+    HealthPermissionView(viewModel: OnboardingViewModel())
+}

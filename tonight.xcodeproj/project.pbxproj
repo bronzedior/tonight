@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3561AB462FF6275400784181 /* Tonight watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3561AB452FF6275400784181 /* Tonight watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		35A576A82FFB319B002F9160 /* AppBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A576A72FFB3191002F9160 /* AppBackground.swift */; };
 		35B4A5C42FF63CCC002F1522 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B4A5C12FF63CCC002F1522 /* Assets.xcassets */; };
 		35B4A5C52FF63CCC002F1522 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C22FF63CCC002F1522 /* RootView.swift */; };
 		35B4A5C62FF63CCC002F1522 /* tonightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C32FF63CCC002F1522 /* tonightApp.swift */; };
@@ -43,6 +44,7 @@
 		3561AB452FF6275400784181 /* Tonight watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tonight watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3561AB5B2FF627A500784181 /* Tonight watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tonight watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35A576A62FFA8F74002F9160 /* tonight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tonight.entitlements; sourceTree = "<group>"; };
+		35A576A72FFB3191002F9160 /* AppBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBackground.swift; sourceTree = "<group>"; };
 		35B4A5C12FF63CCC002F1522 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35B4A5C22FF63CCC002F1522 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		35B4A5C32FF63CCC002F1522 /* tonightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tonightApp.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		3561AB732FF63B3C00784181 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				35A576A72FFB3191002F9160 /* AppBackground.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 			files = (
 				35B4A5C52FF63CCC002F1522 /* RootView.swift in Sources */,
 				35B4A5C62FF63CCC002F1522 /* tonightApp.swift in Sources */,
+				35A576A82FFB319B002F9160 /* AppBackground.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

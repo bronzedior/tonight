@@ -16,7 +16,7 @@ struct HowItWorksView: View {
 
         OnboardingContainer(
             title: "How it works",
-            subtitle: "Your Apple Watch tracks body signals and compares them with your personal baseline",
+            subtitle: "Your Apple Watch tracks body \n signals and compares them with \n your personal baseline",
             buttonTitle: "Continue",
             header: {
                 Image(systemName: "waveform.path.ecg")
@@ -24,17 +24,15 @@ struct HowItWorksView: View {
             },
             content: {
                 HStack(spacing: 32) {
-                    VStack {
-                        Image(systemName: "heart.fill")
-                            .font(.largeTitle)
-                        Text("Heart Rate")
-                    }
+                    FeatureCard(
+                        icon: "heart.fill",
+                        title: "Heart Rate"
+                    )
                     
-                    VStack {
-                        Image(systemName: "figure.walk")
-                            .font(.largeTitle)
-                        Text("Body Gait")
-                    }
+                    FeatureCard(
+                        icon: "figure.walk",
+                        title: "Body Gait"
+                    )
                 }
                 .foregroundStyle(.white)
             },

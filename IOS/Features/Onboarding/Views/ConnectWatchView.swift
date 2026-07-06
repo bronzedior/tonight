@@ -18,7 +18,7 @@ struct ConnectWatchView: View {
 
             title: "Works seamlessly with your Apple Watch",
 
-            subtitle: "Tonight automatically monitors your body signals from your Apple Watch while you're drinking. Just wear your watch and we'll do the rest.",
+            subtitle: "Tonight automatically monitors your body signals from your Apple Watch while \n you're drinking. Just wear your watch \n and we'll do the rest.",
 
             buttonTitle: "Continue",
 
@@ -31,21 +31,6 @@ struct ConnectWatchView: View {
             },
 
             content: {
-
-                VStack(alignment: .leading, spacing: 16) {
-
-                    Label("Continuous heart rate monitoring",
-                          systemImage: "heart.fill")
-
-                    Label("Walking stability detection",
-                          systemImage: "figure.walk")
-
-                    Label("Real-time intoxication estimation",
-                          systemImage: "waveform.path.ecg")
-
-                }
-                .font(.callout)
-                .foregroundStyle(.white)
 
             },
 

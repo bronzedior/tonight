@@ -39,14 +39,7 @@ struct OnboardingContainer<Header: View, Content: View>: View {
 
         ZStack {
 
-            LinearGradient(
-                colors: [
-                    Color.blue.opacity(0.6),
-                    Color.black
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
+            AppBackground()
             .ignoresSafeArea()
 
             VStack(spacing: 24) {
@@ -55,7 +48,7 @@ struct OnboardingContainer<Header: View, Content: View>: View {
 
                 header
 
-                VStack(spacing: 8) {
+                VStack(spacing: 20) {
 
                     Text(title)
                         .font(.title2.bold())
