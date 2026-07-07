@@ -24,14 +24,14 @@ struct GaitReading: Identifiable {
 enum SoberLevel: String {
     case sober = "SOBER"
     case ok = "OK"
-    case semiDrunk = "SEMI-DRUNK"
+    case tipsy = "TIPSY"
     case drunk = "DRUNK"
     
     static func from(score: Int) -> SoberLevel {
         switch score {
         case 80...100: return .sober
         case 60..<80:  return .ok
-        case 40..<60:  return .semiDrunk
+        case 40..<60:  return .tipsy
         default:       return .drunk
         }
     }
@@ -40,7 +40,7 @@ enum SoberLevel: String {
         switch self {
         case .sober:     return Color(red: 0.00, green: 0.90, blue: 0.30)
         case .ok:        return Color(red: 0.00, green: 0.90, blue: 0.80)
-        case .semiDrunk: return Color(red: 0.85, green: 0.60, blue: 0.00)
+        case .tipsy:    return Color(red: 0.85, green: 0.60, blue: 0.00)
         case .drunk:     return Color(red: 0.83, green: 0.18, blue: 0.18)
         }
     }
@@ -90,14 +90,12 @@ class DummyDataProvider: ObservableObject {
     ]
 
     let gaitReadings: [GaitReading] = [
-        GaitReading(minuteOffset:  2, stability: 88),
-        GaitReading(minuteOffset:  8, stability: 95),
-        GaitReading(minuteOffset: 12, stability: 97),
-        GaitReading(minuteOffset: 18, stability: 98),
-        GaitReading(minuteOffset: 21, stability: 95),
-        GaitReading(minuteOffset: 26, stability: 92),
-        GaitReading(minuteOffset: 30, stability: 94),
-        GaitReading(minuteOffset: 34, stability: 93),
+        GaitReading(minuteOffset:  0, stability: 3.0),
+        GaitReading(minuteOffset:  6, stability: 2.2),
+        GaitReading(minuteOffset: 12, stability: 1.8),
+        GaitReading(minuteOffset: 20, stability: 1.9),
+        GaitReading(minuteOffset: 26, stability: 2.5),
+        GaitReading(minuteOffset: 32, stability: 1.5),
     ]
 
     var averageHeartRate: Double {

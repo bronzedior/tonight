@@ -10,53 +10,39 @@ import Charts
 
 struct BodyGaitChartView: View {
     var readings: [GaitReading]
-    var gaitColor = Color.cyan
+    var titleColor = Color(red: 0.2, green: 0.6, blue: 1.0)
+    var dotColor = Color(red: 0.0, green: 0.9, blue: 0.3)
     
     @Binding var isMonitoring: Bool
     
-    private var averageStability: Double {
-        guard !readings.isEmpty else { return 0 }
-        let total = readings.reduce(0.0) { $0 + $1.stability }
-        return total / Double(readings.count)
+    var currentStability: Double {
+        readings.last?.stability ?? 0.0
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text("Body Gait")
                 .font(.system(size: 16, weight: .medium))
-                .foregroundStyle(gaitColor)
+                .foregroundStyle(titleColor)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.bottom, 8)
             
             Chart(readings) { reading in
-                AreaMark(
+                PointMark(
                     x: .value("Minute", reading.minuteOffset),
                     y: .value("Stability", reading.stability)
                 )
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: [gaitColor.opacity(0.3), gaitColor.opacity(0.0)],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                )
-                
-                LineMark(
-                    x: .value("Minute", reading.minuteOffset),
-                    y: .value("Stability", reading.stability)
-                )
-                .foregroundStyle(gaitColor)
-                .lineStyle(StrokeStyle(lineWidth: 2))
-            }
-            .chartYScale(domain: 0...100)
-            .chartXScale(domain: -1...36)
+                .foregroundStyle(dotColor)
+                                .symbolSize(50)            }
+            .chartYScale(domain: -0.5...10.5)
+                        .chartXScale(domain: -1...36)
             .chartXAxis {
                 AxisMarks(values: [0, 10, 20, 30]) { value in
-                    AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [3, 3]))
+                    AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5))
                         .foregroundStyle(.gray.opacity(0.4))
                     AxisValueLabel {
                         if let v = value.as(Int.self) {
-                            Text(v == 0 ? "Min" : String(format: "%02d", v))
+                            Text(String(format: "%02d", v))
                                 .font(.system(size: 9))
                                 .foregroundStyle(.gray)
                         }
@@ -64,10 +50,10 @@ struct BodyGaitChartView: View {
                 }
             }
             .chartYAxis {
-                AxisMarks(position: .trailing, values: [50, 100]) { value in
+                AxisMarks(position: .trailing, values: [0, 10]) { value in
                     AxisValueLabel {
                         if let v = value.as(Int.self) {
-                            Text("\(v)%")
+                            Text("\(v)")
                                 .font(.system(size: 9))
                                 .foregroundStyle(.gray)
                         }
@@ -78,19 +64,19 @@ struct BodyGaitChartView: View {
             .frame(maxWidth: .infinity)
             .padding(.top, 8)
             
-            Text("Stability")
+            Text("Stable")
                 .font(.system(size: 16, weight: .bold, design: .rounded))
                 .foregroundStyle(.white)
             
             HStack(alignment: .firstTextBaseline, spacing: 2) {
-                Text("\(Int(averageStability.rounded()))")
+                Text(String(format: "%.1f", currentStability))
                     .font(.system(size: 30, weight: .medium, design: .rounded))
                     .foregroundStyle(.white)
                 Text("%")
                     .font(.system(size: 14, weight: .regular))
                     .foregroundStyle(.white)
             }
-            Text("Average")
+            Text("Current")
                 .font(.system(size: 16, weight: .regular, design: .rounded))
                 .foregroundStyle(.gray)
         }

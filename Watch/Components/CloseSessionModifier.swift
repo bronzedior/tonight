@@ -20,11 +20,12 @@ struct CloseSessionModifier: ViewModifier {
                 Image(systemName: "xmark")
                     .font(.system(size: 15, weight: .bold))
                     .foregroundStyle(.white)
-                    .frame(width: 36, height: 36)
+                    .frame(width: 35, height: 35)
                     .background(Color(white: 0.25))
                     .clipShape(Circle())
             }
             .buttonStyle(.plain)
+            .offset(x: -2, y: -15)
         }
         .alert("End Session?", isPresented: $showEndSession) {
             Button("Cancel", role: .cancel) { }

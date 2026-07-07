@@ -19,10 +19,13 @@ struct tonightWatchApp: App {
                 TabView {
                     SoberScoreView(score: dataProvider.soberScore, date: dataProvider.currentDate,
                                    isMonitoring: $isMonitoring)
-                    HeartRateChartView(readings: dataProvider.heartRateReadings,
-                                       isMonitoring: $isMonitoring)
-                    BodyGaitChartView(readings: dataProvider.gaitReadings,
-                                      isMonitoring: $isMonitoring)
+                    TabView {
+                        HeartRateChartView(readings: dataProvider.heartRateReadings,
+                                           isMonitoring: $isMonitoring)
+                        BodyGaitChartView(readings: dataProvider.gaitReadings,
+                                          isMonitoring: $isMonitoring)
+                    }
+                    .tabViewStyle(.page(indexDisplayMode: .always))
                 }
                 .tabViewStyle(.verticalPage)
                 .transition(.opacity)
