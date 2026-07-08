@@ -1,8 +1,8 @@
 //
-//  tonight_watchApp.swift
-//  tonight watch Watch App
+//  tonightWatchApp.swift
+//  tonight
 //
-//  Created by Fransiscus Bronzedior Driandonny Noryon on 07/07/26.
+//  Created by Fransiscus Bronzedior Driandonny Noryon on 04/07/26.
 //
 
 import SwiftUI
@@ -10,27 +10,26 @@ import Combine
 
 @main
 struct tonightWatchApp: App {
-    @StateObject var dataProvider = DummyDataProvider()
-    @State var isMonitoring = false
-    
+    @StateObject var viewModel = SessionViewModel()
+
     var body: some Scene {
         WindowGroup {
-            if isMonitoring {
-                TabView {
-                    SoberScoreView(score: dataProvider.soberScore, date: dataProvider.currentDate,
-                                   isMonitoring: $isMonitoring)
+            if viewModel.isMonitoring {
+                if viewModel.baselinePhase == .collecting {
+                    // Fase baseline: tampilkan progress pengumpulan data
+                    BaselineView(viewModel: viewModel)
+                } else {
+                    // Fase deteksi: tampilkan score, HR chart, gait chart
                     TabView {
-                        HeartRateChartView(readings: dataProvider.heartRateReadings,
-                                           isMonitoring: $isMonitoring)
-                        BodyGaitChartView(readings: dataProvider.gaitReadings,
-                                          isMonitoring: $isMonitoring)
+                        SoberScoreView(viewModel: viewModel)
+                        HeartRateChartView(viewModel: viewModel)
+                        BodyGaitChartView(viewModel: viewModel)
                     }
-                    .tabViewStyle(.page(indexDisplayMode: .always))
+                    .tabViewStyle(.verticalPage)
+                    .transition(.opacity)
                 }
-                .tabViewStyle(.verticalPage)
-                .transition(.opacity)
             } else {
-                StartView(isMonitoring: $isMonitoring)
+                StartView(viewModel: viewModel)
             }
         }
     }
