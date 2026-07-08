@@ -2,23 +2,26 @@
 //  BodyGaitChartView.swift
 //  tonight
 //
-//  Created by Fransiscus Bronzedior Driandonny Noryon on 07/07/26.
+//  Created by Fransiscus Bronzedior Driandonny Noryon on 08/07/26.
 //
 
 import SwiftUI
 import Charts
 
 struct BodyGaitChartView: View {
-    var readings: [GaitReading]
+    @ObservedObject var viewModel: SessionViewModel
+
     var titleColor = Color(red: 0.2, green: 0.6, blue: 1.0)
     var dotColor = Color(red: 0.0, green: 0.9, blue: 0.3)
     
-    @Binding var isMonitoring: Bool
-    
-    var currentStability: Double {
-        readings.last?.stability ?? 0.0
+    private var readings: [GaitReading] { viewModel.gaitReadings }
+
+    private var averageStability: Double {
+        guard !readings.isEmpty else { return 0 }
+        let total = readings.reduce(0.0) { $0 + $1.stability }
+        return total / Double(readings.count)
     }
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text("Body Gait")
@@ -26,23 +29,24 @@ struct BodyGaitChartView: View {
                 .foregroundStyle(titleColor)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.bottom, 8)
-            
+
             Chart(readings) { reading in
                 PointMark(
                     x: .value("Minute", reading.minuteOffset),
                     y: .value("Stability", reading.stability)
                 )
                 .foregroundStyle(dotColor)
-                                .symbolSize(50)            }
-            .chartYScale(domain: -0.5...10.5)
-                        .chartXScale(domain: -1...36)
+                .symbolSize(50)
+            }
+            .chartYScale(domain: 0...100)
+            .chartXScale(domain: -1...36)
             .chartXAxis {
                 AxisMarks(values: [0, 10, 20, 30]) { value in
-                    AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5))
+                    AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [3, 3]))
                         .foregroundStyle(.gray.opacity(0.4))
                     AxisValueLabel {
                         if let v = value.as(Int.self) {
-                            Text(String(format: "%02d", v))
+                            Text(v == 0 ? "Min" : String(format: "%02d", v))
                                 .font(.system(size: 9))
                                 .foregroundStyle(.gray)
                         }
@@ -50,10 +54,10 @@ struct BodyGaitChartView: View {
                 }
             }
             .chartYAxis {
-                AxisMarks(position: .trailing, values: [0, 10]) { value in
+                AxisMarks(position: .trailing, values: [50, 100]) { value in
                     AxisValueLabel {
                         if let v = value.as(Int.self) {
-                            Text("\(v)")
+                            Text("\(v)%")
                                 .font(.system(size: 9))
                                 .foregroundStyle(.gray)
                         }
@@ -63,29 +67,31 @@ struct BodyGaitChartView: View {
             .frame(height: 80)
             .frame(maxWidth: .infinity)
             .padding(.top, 8)
-            
-            Text("Stable")
+
+            Text("Stability")
                 .font(.system(size: 16, weight: .bold, design: .rounded))
                 .foregroundStyle(.white)
-            
+
             HStack(alignment: .firstTextBaseline, spacing: 2) {
-                Text(String(format: "%.1f", currentStability))
+                Text("\(Int(averageStability.rounded()))")
                     .font(.system(size: 30, weight: .medium, design: .rounded))
                     .foregroundStyle(.white)
                 Text("%")
                     .font(.system(size: 14, weight: .regular))
                     .foregroundStyle(.white)
             }
-            Text("Current")
+            Text("Average")
                 .font(.system(size: 16, weight: .regular, design: .rounded))
                 .foregroundStyle(.gray)
         }
-        .closeSession(isMonitoring: $isMonitoring)
+        .closeSession(isMonitoring: $viewModel.isMonitoring) {
+            viewModel.stopSession()
+        }
         .padding(.horizontal, 10)
         .containerBackground(.black, for: .tabView)
     }
 }
 
 #Preview("Body Gait") {
-    BodyGaitChartView(readings: DummyDataProvider.shared.gaitReadings, isMonitoring: .constant(true))
+    BodyGaitChartView(viewModel: SessionViewModel())
 }
