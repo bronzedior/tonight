@@ -10,24 +10,26 @@ import Combine
 
 @main
 struct tonightWatchApp: App {
-    @StateObject var dataProvider = DummyDataProvider()
-    @State var isMonitoring = false
-    
+    @StateObject var viewModel = SessionViewModel()
+
     var body: some Scene {
         WindowGroup {
-            if isMonitoring {
-                TabView {
-                    SoberScoreView(score: dataProvider.soberScore, date: dataProvider.currentDate,
-                                   isMonitoring: $isMonitoring)
-                    HeartRateChartView(readings: dataProvider.heartRateReadings,
-                                       isMonitoring: $isMonitoring)
-                    BodyGaitChartView(readings: dataProvider.gaitReadings,
-                                      isMonitoring: $isMonitoring)
+            if viewModel.isMonitoring {
+                if viewModel.baselinePhase == .collecting {
+                    // Fase baseline: tampilkan progress pengumpulan data
+                    BaselineView(viewModel: viewModel)
+                } else {
+                    // Fase deteksi: tampilkan score, HR chart, gait chart
+                    TabView {
+                        SoberScoreView(viewModel: viewModel)
+                        HeartRateChartView(viewModel: viewModel)
+                        BodyGaitChartView(viewModel: viewModel)
+                    }
+                    .tabViewStyle(.verticalPage)
+                    .transition(.opacity)
                 }
-                .tabViewStyle(.verticalPage)
-                .transition(.opacity)
             } else {
-                StartView(isMonitoring: $isMonitoring)
+                StartView(viewModel: viewModel)
             }
         }
     }

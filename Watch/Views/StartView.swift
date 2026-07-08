@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct StartView: View {
-    @Binding var isMonitoring: Bool
+    @ObservedObject var viewModel: SessionViewModel
+
     var body: some View {
         VStack {
             Spacer()
             Button {
-                isMonitoring = true
+                viewModel.startSession()
             } label: {
                 Text("Start")
                     .font(.system(size: 20, weight: .medium))
@@ -29,5 +30,5 @@ struct StartView: View {
 }
 
 #Preview("Start") {
-    StartView(isMonitoring: .constant(false))
+    StartView(viewModel: SessionViewModel())
 }

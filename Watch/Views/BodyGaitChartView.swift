@@ -9,17 +9,18 @@ import SwiftUI
 import Charts
 
 struct BodyGaitChartView: View {
-    var readings: [GaitReading]
+    @ObservedObject var viewModel: SessionViewModel
+
     var gaitColor = Color.cyan
-    
-    @Binding var isMonitoring: Bool
-    
+
+    private var readings: [GaitReading] { viewModel.gaitReadings }
+
     private var averageStability: Double {
         guard !readings.isEmpty else { return 0 }
         let total = readings.reduce(0.0) { $0 + $1.stability }
         return total / Double(readings.count)
     }
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text("Body Gait")
@@ -27,7 +28,7 @@ struct BodyGaitChartView: View {
                 .foregroundStyle(gaitColor)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.bottom, 8)
-            
+
             Chart(readings) { reading in
                 AreaMark(
                     x: .value("Minute", reading.minuteOffset),
@@ -40,7 +41,7 @@ struct BodyGaitChartView: View {
                         endPoint: .bottom
                     )
                 )
-                
+
                 LineMark(
                     x: .value("Minute", reading.minuteOffset),
                     y: .value("Stability", reading.stability)
@@ -77,11 +78,11 @@ struct BodyGaitChartView: View {
             .frame(height: 80)
             .frame(maxWidth: .infinity)
             .padding(.top, 8)
-            
+
             Text("Stability")
                 .font(.system(size: 16, weight: .bold, design: .rounded))
                 .foregroundStyle(.white)
-            
+
             HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Text("\(Int(averageStability.rounded()))")
                     .font(.system(size: 30, weight: .medium, design: .rounded))
@@ -94,12 +95,14 @@ struct BodyGaitChartView: View {
                 .font(.system(size: 16, weight: .regular, design: .rounded))
                 .foregroundStyle(.gray)
         }
-        .closeSession(isMonitoring: $isMonitoring)
+        .closeSession(isMonitoring: $viewModel.isMonitoring) {
+            viewModel.stopSession()
+        }
         .padding(.horizontal, 10)
         .containerBackground(.black, for: .tabView)
     }
 }
 
 #Preview("Body Gait") {
-    BodyGaitChartView(readings: DummyDataProvider.shared.gaitReadings, isMonitoring: .constant(true))
+    BodyGaitChartView(viewModel: SessionViewModel())
 }

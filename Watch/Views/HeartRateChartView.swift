@@ -9,13 +9,14 @@ import SwiftUI
 import Charts
 
 struct HeartRateChartView: View {
-    var readings: [HeartRateReading]
+    @ObservedObject var viewModel: SessionViewModel
+
     var heartColor = Color(red: 1.0, green: 0.42, blue: 0.42)
-    var minBPM: Int { readings.map(\.bpmLow).min() ?? 0 }
-    var maxBPM: Int { readings.map(\.bpmHigh).max() ?? 0 }
-    
-    @Binding var isMonitoring: Bool
-    
+
+    private var readings: [HeartRateReading] { viewModel.heartRateReadings }
+    private var minBPM: Int { readings.map(\.bpmLow).min() ?? 0 }
+    private var maxBPM: Int { readings.map(\.bpmHigh).max() ?? 0 }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text("Heart Rate")
@@ -23,7 +24,7 @@ struct HeartRateChartView: View {
                 .foregroundStyle(.blue)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.bottom, 8)
-            
+
             Chart(readings) { reading in
                 BarMark(
                     x: .value("Minute", reading.minuteOffset),
@@ -63,7 +64,7 @@ struct HeartRateChartView: View {
             .frame(height: 80)
             .frame(maxWidth: .infinity)
             .padding(.top, 8)
-            
+
             Text("Range")
                 .font(.system(size: 16, weight: .bold, design: .rounded))
                 .foregroundStyle(.white)
@@ -79,26 +80,14 @@ struct HeartRateChartView: View {
                 .font(.system(size: 16, weight: .regular, design: .rounded))
                 .foregroundStyle(.gray)
         }
-        .closeSession(isMonitoring: $isMonitoring)
+        .closeSession(isMonitoring: $viewModel.isMonitoring) {
+            viewModel.stopSession()
+        }
         .padding(.horizontal, 10)
         .containerBackground(.black, for: .tabView)
     }
 }
 
 #Preview("Heart Rate") {
-    HeartRateChartView(readings: DummyDataProvider.shared.heartRateReadings, isMonitoring: .constant(true))
+    HeartRateChartView(viewModel: SessionViewModel())
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

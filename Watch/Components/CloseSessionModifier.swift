@@ -9,13 +9,14 @@ import SwiftUI
 
 struct CloseSessionModifier: ViewModifier {
     @Binding var isMonitoring: Bool
+    var onEndSession: (() -> Void)?
     @State var showEndSession = false
-    
+
     func body(content: Content) -> some View {
         ZStack(alignment: .topLeading) {
             content
                 .frame(maxWidth: .infinity)
-            
+
             Button { showEndSession = true } label: {
                 Image(systemName: "xmark")
                     .font(.system(size: 15, weight: .bold))
@@ -29,6 +30,7 @@ struct CloseSessionModifier: ViewModifier {
         .alert("End Session?", isPresented: $showEndSession) {
             Button("Cancel", role: .cancel) { }
             Button("End Session", role: .destructive) {
+                onEndSession?()
                 isMonitoring = false
             }
         } message: {
@@ -38,7 +40,7 @@ struct CloseSessionModifier: ViewModifier {
 }
 
 extension View {
-    func closeSession(isMonitoring: Binding<Bool>) -> some View {
-        modifier(CloseSessionModifier(isMonitoring: isMonitoring))
+    func closeSession(isMonitoring: Binding<Bool>, onEnd: (() -> Void)? = nil) -> some View {
+        modifier(CloseSessionModifier(isMonitoring: isMonitoring, onEndSession: onEnd))
     }
 }
