@@ -9,11 +9,34 @@ import SwiftUI
 
 struct StartView: View {
     @Binding var isMonitoring: Bool
+    
+    enum ScreenState {
+        case start
+        case calibrating
+        case allSet
+    }
+    
+    @State private var currentState: ScreenState = .start
+    
     var body: some View {
+        ZStack {
+            switch currentState {
+            case .start:
+                startContent
+            case .calibrating:
+                CalibratingView()
+            case .allSet:
+                AllSetView()
+            }
+        }
+        .animation(.easeInOut(duration: 0.3), value: currentState)
+    }
+    
+    var startContent: some View {
         VStack {
             Spacer()
             Button {
-                isMonitoring = true
+                startCalibration()
             } label: {
                 Text("Start")
                     .font(.system(size: 20, weight: .medium))
@@ -25,6 +48,20 @@ struct StartView: View {
             .clipShape(Capsule())
         }
         .containerBackground(.black, for: .tabView)
+    }
+    
+    func startCalibration() {
+        currentState = .calibrating
+        
+        // Ini nanti kondisi perlu waktu berapa lama pas calibrating
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            currentState = .allSet
+            
+            // Ini kalo udah selesai calibrating
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                isMonitoring = true
+            }
+        }
     }
 }
 
