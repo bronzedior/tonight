@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InfoSheetView: View {
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.dismiss) var dismiss
     
     let soberLevel: SoberLevel
     let timeRange: String
@@ -40,7 +40,7 @@ struct InfoSheetView: View {
                     
                     Text("More Info")
                         .font(.system(size: 16, weight: .medium))
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(.white)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(.bottom, 8)
                 }

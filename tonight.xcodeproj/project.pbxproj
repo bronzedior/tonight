@@ -36,6 +36,7 @@
 		35B4A5C52FF63CCC002F1522 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C22FF63CCC002F1522 /* RootView.swift */; };
 		35B4A5C62FF63CCC002F1522 /* tonightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C32FF63CCC002F1522 /* tonightApp.swift */; };
 		53921D322FFCA98900594BCE /* tonight watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 53921D282FFCA98800594BCE /* tonight watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		53CDFAB3300106EF000DA79C /* SDWebImageLottieCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 53CDFAB2300106EF000DA79C /* SDWebImageLottieCoder */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53CDFAB3300106EF000DA79C /* SDWebImageLottieCoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +416,7 @@
 			);
 			name = "tonight watch Watch App";
 			packageProductDependencies = (
+				53CDFAB2300106EF000DA79C /* SDWebImageLottieCoder */,
 			);
 			productName = "tonight watch Watch App";
 			productReference = 53921D282FFCA98800594BCE /* tonight watch Watch App.app */;
@@ -446,6 +449,9 @@
 			);
 			mainGroup = 3561AB1E2FF625D700784181;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				53CDFAB1300106EF000DA79C /* XCRemoteSwiftPackageReference "SDWebImageLottieCoder" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3561AB282FF625D700784181 /* Products */;
 			projectDirPath = "";
@@ -842,6 +848,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		53CDFAB1300106EF000DA79C /* XCRemoteSwiftPackageReference "SDWebImageLottieCoder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageLottieCoder.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		53CDFAB2300106EF000DA79C /* SDWebImageLottieCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 53CDFAB1300106EF000DA79C /* XCRemoteSwiftPackageReference "SDWebImageLottieCoder" */;
+			productName = SDWebImageLottieCoder;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3561AB1F2FF625D700784181 /* Project object */;
 }

@@ -44,6 +44,15 @@ enum SoberLevel: String {
         case .drunk:     return Color(red: 0.83, green: 0.18, blue: 0.18)
         }
     }
+    
+    var subtitle: String {
+        switch self {
+        case .sober: return "Way to go"
+        case .ok:    return "Doing fine"
+        case .tipsy: return "Take it easy"
+        case .drunk: return "Be careful"
+        }
+    }
 }
 
 // MARK: - Dummy Data nanti diganti kalo udah connect real time

@@ -10,64 +10,81 @@ import SwiftUI
 struct SoberScoreView: View {
     var score: Int
     var date: Date
+    var heartRate: Int
+    var gaitScore: Int
     
     var soberLevel: SoberLevel {
         SoberLevel.from(score: score)
     }
     
-    @State var animatedProgress: Double = 0
     @State var showInfo: Bool = false
-    @Binding var isMonitoring: Bool
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            Text("Sober Score")
-                .font(.system(size: 16, weight: .medium))
-                .foregroundStyle(.blue)
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(.bottom, 8)
-            
-            ZStack {
-                CircularGauge(
-                    progress: animatedProgress,
-                    lineWidth: 14,
-                    trackColor: Color(white: 0.20),
-                    progressColor: soberLevel.color
-                )
-                Text("\(score)")
-                    .font(.system(size: 44, weight: .bold, design: .rounded))
-                    .foregroundStyle(soberLevel.color)
-                    .contentTransition(.numericText())
-            }
-            .frame(width: 120, height: 120)
-            .frame(maxWidth: .infinity)
-            .padding(.top, 8)
-            
-            HStack(spacing: 6) {
-                Text(soberLevel.rawValue)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundStyle(soberLevel.color)
-                
-                Button { showInfo.toggle() } label: {
-                    Image(systemName: "info.circle")
-                        .font(.system(size: 14))
-                        .foregroundStyle(.indigo)
+        ZStack(alignment: .topLeading) {
+            VStack(spacing: 0) {
+                // Top row: time + status label
+                HStack(alignment: .top) {
+                    Spacer()
+                    VStack(alignment: .trailing, spacing: 0) {
+                        Text("Status")
+                            .font(.system(size: 16, weight: .regular))
+                            .foregroundStyle(.white)
+                    }
                 }
-                .buttonStyle(.plain)
+                .padding(.top, -18)
+                
+                Spacer()
+                
+                // Center: sober level label
+                VStack(spacing: 4) {
+                    Text(soberLevel.rawValue)
+                        .font(.system(size: 44, weight: .bold, design: .rounded))
+                        .foregroundStyle(soberLevel.color)
+                    
+                    Text(soberLevel.subtitle)
+                        .font(.system(size: 16, weight: .regular, design: .rounded))
+                        .foregroundStyle(.white)
+                }
+                
+                Spacer()
+                
+                // Bottom: heart rate & gait indicators
+                HStack(spacing: 4) {
+                    Image(systemName: "heart.fill")
+                        .font(.system(size: 12))
+                        .foregroundStyle(.white)
+                    Text("\(heartRate)")
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.white)
+                    
+                    Text("·")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundStyle(.gray)
+                    
+                    Image(systemName: "figure.walk")
+                        .font(.system(size: 12))
+                        .foregroundStyle(.white)
+                    Text("\(gaitScore)")
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.white)
+                }
+                .padding(.bottom, 4)
             }
             
-            Text(date, format: .dateTime.day().month(.abbreviated))
-                .font(.system(size: 16, weight: .regular, design: .rounded))
-                .foregroundStyle(.gray)
+            // Info button (top-left)
+            Button { showInfo.toggle() } label: {
+                Image(systemName: "info")
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundStyle(.white)
+                    .frame(width: 40, height: 40)
+                    .background(Color(white: 0.25))
+                    .clipShape(Circle())
+            }
+            .buttonStyle(.plain)
+            .offset(x: -2, y: -37)
         }
-        .closeSession(isMonitoring: $isMonitoring)
         .padding(.horizontal, 10)
         .containerBackground(.black, for: .tabView)
-        .onAppear {
-            withAnimation(.easeInOut(duration: 1.2)) {
-                animatedProgress = Double(score) / 100.0
-            }
-        }
         .sheet(isPresented: $showInfo) {
             InfoSheetView(
                 soberLevel: soberLevel,
@@ -77,24 +94,8 @@ struct SoberScoreView: View {
             )
         }
     }
-    
-    func scoreRangeRow(_ range: String, _ label: String, _ color: Color) -> some View {
-        HStack {
-            Circle()
-                .fill(color)
-                .frame(width: 8, height: 8)
-            Text(range)
-                .font(.caption2)
-                .foregroundStyle(.secondary)
-            Spacer()
-            Text(label)
-                .font(.caption2)
-                .bold()
-                .foregroundStyle(color)
-        }
-    }
 }
 
 #Preview("Score 100 — SOBER") {
-    SoberScoreView(score: 100, date: Date(), isMonitoring: .constant(true))
+    SoberScoreView(score: 100, date: Date(), heartRate: 79, gaitScore: 99)
 }
