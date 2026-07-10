@@ -9,15 +9,12 @@ import SwiftUI
 
 struct StartView: View {
     @Binding var isMonitoring: Bool
-    
     enum ScreenState {
         case start
         case calibrating
         case allSet
     }
-    
-    @State private var currentState: ScreenState = .start
-    
+    @State var currentState: ScreenState = .start
     var body: some View {
         ZStack {
             switch currentState {
@@ -33,8 +30,15 @@ struct StartView: View {
     }
     
     var startContent: some View {
-        VStack {
+        VStack(spacing: 0) {
             Spacer()
+            
+            LottieAnimationView(fileName: "BeerBottle")
+                .frame(width: 140, height: 150)
+            
+            Spacer()
+            
+            // Start button
             Button {
                 startCalibration()
             } label: {
