@@ -9,10 +9,10 @@ import Foundation
 
 struct BaselineData {
     // MARK: Averages
-    let avgHeartRate: Double            
-    let avgWalkingSpeed: Double         
-    let avgWalkingAsymmetry: Double     
-    let avgDoubleSupportTime: Double    
+    let avgHeartRate: Double
+    let avgWalkingSpeed: Double
+    let avgWalkingAsymmetry: Double
+    let avgDoubleSupportTime: Double
 
     // MARK: Standard Deviations
     let heartRateStdDev: Double
@@ -24,34 +24,25 @@ struct BaselineData {
     var isEstablished: Bool
 
     // MARK: Factory
-
-    /// Menghitung BaselineData dari kumpulan sampel.
-    /// Membutuhkan minimal `minHeartRateSamples` HR dan `minWalkingSamples` walking data.
-    static func calculate(
-        from samples: [HealthMetricSample],
-        minHeartRateSamples: Int = 10,
-        minWalkingSamples: Int = 2
+    static func make(
+        heartRateSamples: [Double],
+        historicalGaitSpeed: Double?,
+        historicalGaitAsymmetry: Double?,
+        historicalGaitDoubleSupport: Double?,
+        minHeartRateSamples: Int = 10
     ) -> BaselineData? {
-        let hrValues = samples.map { $0.heartRate }
-        guard hrValues.count >= minHeartRateSamples else { return nil }
-
-        let walkingSpeeds      = samples.compactMap { $0.walkingSpeed }
-        let walkingAsymmetries = samples.compactMap { $0.walkingAsymmetry }
-        let doubleSupportTimes = samples.compactMap { $0.doubleSupportTime }
-
-        // Walking data mungkin belum tersedia jika user diam.
-        // Tetap buat baseline tapi tandai walking dengan 0 jika kosong.
-        let hasEnoughWalking = walkingSpeeds.count >= minWalkingSamples
+        guard heartRateSamples.count >= minHeartRateSamples else { return nil }
 
         return BaselineData(
-            avgHeartRate:            Self.mean(hrValues),
-            avgWalkingSpeed:         hasEnoughWalking ? Self.mean(walkingSpeeds)      : 0,
-            avgWalkingAsymmetry:     hasEnoughWalking ? Self.mean(walkingAsymmetries)  : 0,
-            avgDoubleSupportTime:    hasEnoughWalking ? Self.mean(doubleSupportTimes)  : 0,
-            heartRateStdDev:         Self.stdDev(hrValues),
-            walkingSpeedStdDev:      hasEnoughWalking ? Self.stdDev(walkingSpeeds)      : 0,
-            walkingAsymmetryStdDev:  hasEnoughWalking ? Self.stdDev(walkingAsymmetries) : 0,
-            doubleSupportTimeStdDev: hasEnoughWalking ? Self.stdDev(doubleSupportTimes) : 0,
+            avgHeartRate:            Self.mean(heartRateSamples),
+            avgWalkingSpeed:         historicalGaitSpeed ?? 0,
+            avgWalkingAsymmetry:     historicalGaitAsymmetry ?? 0,
+            avgDoubleSupportTime:    historicalGaitDoubleSupport ?? 0,
+            heartRateStdDev:         Self.stdDev(heartRateSamples),
+            // Std dev gait tidak tersedia dari rata-rata historis saja.
+            walkingSpeedStdDev:      0,
+            walkingAsymmetryStdDev:  0,
+            doubleSupportTimeStdDev: 0,
             isEstablished: true
         )
     }

@@ -151,9 +151,40 @@ final class HealthKitService {
             options: .strictStartDate
         )
 
-        var latestSpeed: Double?
-        var latestAsymmetry: Double?
-        var latestDoubleSupport: Double?
+        fetchWalkingAverages(predicate: predicate) { [weak self] speed, asymmetry, dst in
+            // Hanya kirim callback jika setidaknya ada 1 data walking
+            if speed != nil || asymmetry != nil || dst != nil {
+                self?.onNewWalkingData?(speed, asymmetry, dst)
+            }
+        }
+    }
+
+    // MARK: - Historical Gait Baseline
+    func fetchGaitBaseline(
+        days: Int = 30,
+        completion: @escaping (Double?, Double?, Double?) -> Void
+    ) {
+        let end = Date()
+        let start = Calendar.current.date(byAdding: .day, value: -days, to: end) ?? end
+
+        let predicate = HKQuery.predicateForSamples(
+            withStart: start,
+            end: end,
+            options: .strictStartDate
+        )
+
+        fetchWalkingAverages(predicate: predicate, completion: completion)
+    }
+
+    // MARK: - Shared Averaging
+
+    private func fetchWalkingAverages(
+        predicate: NSPredicate,
+        completion: @escaping (Double?, Double?, Double?) -> Void
+    ) {
+        var avgSpeed: Double?
+        var avgAsymmetry: Double?
+        var avgDoubleSupport: Double?
 
         let group = DispatchGroup()
 
@@ -163,9 +194,9 @@ final class HealthKitService {
             quantityType: walkingSpeedType,
             quantitySamplePredicate: predicate,
             options: .discreteAverage
-        ) { _, statistics, error in
+        ) { _, statistics, _ in
             if let avg = statistics?.averageQuantity() {
-                latestSpeed = avg.doubleValue(for: HKUnit.meter().unitDivided(by: .second()))
+                avgSpeed = avg.doubleValue(for: HKUnit.meter().unitDivided(by: .second()))
             }
             group.leave()
         }
@@ -177,9 +208,9 @@ final class HealthKitService {
             quantityType: walkingAsymmetryType,
             quantitySamplePredicate: predicate,
             options: .discreteAverage
-        ) { _, statistics, error in
+        ) { _, statistics, _ in
             if let avg = statistics?.averageQuantity() {
-                latestAsymmetry = avg.doubleValue(for: .percent()) * 100
+                avgAsymmetry = avg.doubleValue(for: .percent()) * 100
             }
             group.leave()
         }
@@ -191,19 +222,16 @@ final class HealthKitService {
             quantityType: doubleSupportType,
             quantitySamplePredicate: predicate,
             options: .discreteAverage
-        ) { _, statistics, error in
+        ) { _, statistics, _ in
             if let avg = statistics?.averageQuantity() {
-                latestDoubleSupport = avg.doubleValue(for: .percent()) * 100
+                avgDoubleSupport = avg.doubleValue(for: .percent()) * 100
             }
             group.leave()
         }
         healthStore.execute(doubleSupportQuery)
 
-        group.notify(queue: .main) { [weak self] in
-            // Hanya kirim callback jika setidaknya ada 1 data walking
-            if latestSpeed != nil || latestAsymmetry != nil || latestDoubleSupport != nil {
-                self?.onNewWalkingData?(latestSpeed, latestAsymmetry, latestDoubleSupport)
-            }
+        group.notify(queue: .main) {
+            completion(avgSpeed, avgAsymmetry, avgDoubleSupport)
         }
     }
 }

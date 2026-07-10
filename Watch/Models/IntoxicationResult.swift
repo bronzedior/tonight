@@ -12,10 +12,10 @@ struct IntoxicationResult {
     let soberScore: Int              // 0-100, makin tinggi makin sober (100 - riskScore)
     let level: SoberLevel            // SOBER / OK / SEMI-DRUNK / DRUNK
 
-    let heartRateDeviation: Double          
-    let walkingSpeedDeviation: Double      
+    let heartRateDeviation: Double
+    let walkingSpeedDeviation: Double
     let walkingAsymmetryDeviation: Double
-    let doubleSupportTimeDeviation: Double  
+    let doubleSupportTimeDeviation: Double
 
     let heartRateNormalized: Double
     let walkingSpeedNormalized: Double
