@@ -12,6 +12,7 @@
 		35B4A5C52FF63CCC002F1522 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C22FF63CCC002F1522 /* RootView.swift */; };
 		35B4A5C62FF63CCC002F1522 /* tonightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C32FF63CCC002F1522 /* tonightApp.swift */; };
 		53921D322FFCA98900594BCE /* tonight watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 53921D282FFCA98800594BCE /* tonight watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA0000012FFCA98900594BCE /* RiskScoringEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5DE2FF63DF1002F1522 /* RiskScoringEngine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -324,6 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0000012FFCA98900594BCE /* RiskScoringEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

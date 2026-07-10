@@ -95,14 +95,14 @@ struct SoberScoreView: View {
                             .foregroundStyle(.pink)
                     }
                     Label {
-                        Text("Walking Speed (30%)")
+                        Text("Walking Speed (20%)")
                             .font(.caption2)
                     } icon: {
                         Image(systemName: "figure.walk")
                             .foregroundStyle(.cyan)
                     }
                     Label {
-                        Text("Walking Asymmetry (20%)")
+                        Text("Walking Asymmetry (30%)")
                             .font(.caption2)
                     } icon: {
                         Image(systemName: "figure.walk.diamond.fill")
@@ -120,7 +120,7 @@ struct SoberScoreView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     scoreRangeRow("80–100", "SOBER", SoberLevel.sober.color)
                     scoreRangeRow("60–79",  "OK",    SoberLevel.ok.color)
-                    scoreRangeRow("40–59",  "SEMI-DRUNK", SoberLevel.tipsy.color)
+                    scoreRangeRow("40–59",  "SEMI-DRUNK", SoberLevel.semiDrunk.color)
                     scoreRangeRow("0–39",   "DRUNK", SoberLevel.drunk.color)
                 }
             }

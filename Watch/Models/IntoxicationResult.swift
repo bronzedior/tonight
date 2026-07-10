@@ -22,11 +22,11 @@ struct IntoxicationResult {
     let walkingAsymmetryNormalized: Double
     let doubleSupportTimeNormalized: Double
 
-    /// Composite gait deviation untuk chart BodyGait (rata-rata 3 walking metrics normalized)
+    let gaitMetricsUsed: Int
+
     var gaitDeviation: Double {
-        let validDeviations = [walkingSpeedNormalized, walkingAsymmetryNormalized, doubleSupportTimeNormalized]
-            .filter { $0 > 0 }
-        guard !validDeviations.isEmpty else { return 0 }
-        return validDeviations.reduce(0, +) / Double(validDeviations.count) * 100
+        guard gaitMetricsUsed > 0 else { return 0 }
+        let sum = walkingSpeedNormalized + walkingAsymmetryNormalized + doubleSupportTimeNormalized
+        return sum / Double(gaitMetricsUsed) * 100
     }
 }

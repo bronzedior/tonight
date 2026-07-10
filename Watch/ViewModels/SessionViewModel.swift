@@ -8,10 +8,9 @@
 import SwiftUI
 import Combine
 
-/// Fase baseline saat monitoring dimulai.
 enum BaselinePhase {
     case idle           // Belum mulai
-    case collecting     // Sedang mengumpulkan data baseline (5 menit)
+    case collecting     // Sedang mengumpulkan data baseline
     case established    // Baseline sudah siap, deteksi berjalan
 }
 
@@ -76,17 +75,26 @@ class SessionViewModel: ObservableObject {
     /// Waktu mulai sesi
     private var sessionStartDate: Date?
 
-    /// Durasi baseline dalam detik (5 menit)
-    private let baselineDuration: TimeInterval = 5 * 60
+    /// Durasi kalibrasi baseline HR dalam detik.
+    private let baselineDuration: TimeInterval = 5
+
+    /// Minimal sampel HR sebelum baseline dianggap valid. Window kalibrasi cuma
+    /// 5 detik, sementara HealthKit ngirim HR tiap ~5 detik — jadi 1 sampel.
+    private let minBaselineHeartRateSamples = 1
 
     /// Timer untuk update progress baseline
     private var baselineTimer: Timer?
 
+    /// Window kalibrasi habis tapi belum ada satu pun sampel HR yang masuk.
+    /// Baseline di-establish begitu sampel HR pertama datang.
+    private var awaitingBaselineHeartRate = false
+
     /// Semua HR readings dalam menit yang sama, untuk aggregasi ke HeartRateReading
     private var minuteHeartRates: [Int: [Double]] = [:]
 
-    /// Semua HR readings setelah baseline (untuk sliding window)
+    /// HR readings terakhir setelah baseline (sliding window, buat meredam noise)
     private var recentHeartRates: [Double] = []
+    private let recentHeartRateWindow = 5
 
     // MARK: - Session Control
 
@@ -104,7 +112,10 @@ class SessionViewModel: ObservableObject {
     /// Stop sesi monitoring.
     func stopSession() {
         healthService.stopMonitoring()
+        healthService.onNewHeartRate = nil
+        healthService.onNewWalkingData = nil
         motionService.stop()
+        motionService.onModeChange = nil
         baselineTimer?.invalidate()
         baselineTimer = nil
         isMonitoring = false
@@ -112,11 +123,17 @@ class SessionViewModel: ObservableObject {
         baselineProgress = 0
         baselineSamples = []
         baseline = nil
+        awaitingBaselineHeartRate = false
         minuteHeartRates = [:]
         recentHeartRates = []
         heartRateReadings = []
         gaitReadings = []
         scoringMode = .stationary
+        sessionStartDate = nil
+        latestHeartRate = 0
+        latestWalkingSpeed = nil
+        latestWalkingAsymmetry = nil
+        latestDoubleSupportTime = nil
         historicalGaitSpeed = nil
         historicalGaitAsymmetry = nil
         historicalGaitDoubleSupport = nil
@@ -125,13 +142,21 @@ class SessionViewModel: ObservableObject {
     // MARK: - Private — Start Monitoring
 
     private func beginMonitoring() {
-        sessionStartDate = Date()
-        sessionDate = Date()
+        let now = Date()
+        sessionStartDate = now
+        sessionDate = now
         isMonitoring = true
         baselinePhase = .collecting
         baselineProgress = 0
         soberScore = 100
         currentLevel = .sober
+        baselineSamples = []
+        baseline = nil
+        awaitingBaselineHeartRate = false
+        minuteHeartRates = [:]
+        recentHeartRates = []
+        heartRateReadings = []
+        gaitReadings = []
 
         // Setup callbacks dari HealthKitService
         healthService.onNewHeartRate = { [weak self] bpm, timestamp in
@@ -141,3 +166,195 @@ class SessionViewModel: ObservableObject {
         healthService.onNewWalkingData = { [weak self] speed, asymmetry, dst in
             self?.handleNewWalkingData(speed: speed, asymmetry: asymmetry, dst: dst)
         }
+
+        // CoreMotion nentuin mode: stationary = HR-only, walking = HR + gait.
+        motionService.onModeChange = { [weak self] mode in
+            self?.handleModeChange(mode)
+        }
+
+        // Baseline gait diambil dari rata-rata historis 30 hari di HealthKit,
+        // bukan dari kalibrasi realtime (kalibrasi cuma ngukur HR).
+        healthService.fetchGaitBaseline(days: 30) { [weak self] speed, asymmetry, dst in
+            guard let self = self else { return }
+            self.historicalGaitSpeed = speed
+            self.historicalGaitAsymmetry = asymmetry
+            self.historicalGaitDoubleSupport = dst
+
+            // Query historis bisa selesai setelah baseline HR jadi. Rebuild supaya
+            // gait ikut kepakai, bukan ke-skip selamanya.
+            if self.baselinePhase == .established {
+                self.establishBaseline()
+            }
+        }
+
+        healthService.startMonitoring()
+        motionService.start()
+        startBaselineTimer()
+    }
+
+    // MARK: - Private — Baseline
+
+    private func startBaselineTimer() {
+        baselineTimer?.invalidate()
+        let start = Date()
+
+        baselineTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] timer in
+            guard let self = self else {
+                timer.invalidate()
+                return
+            }
+
+            let elapsed = Date().timeIntervalSince(start)
+            self.baselineProgress = min(1.0, elapsed / self.baselineDuration)
+
+            guard elapsed >= self.baselineDuration else { return }
+            timer.invalidate()
+            self.baselineTimer = nil
+            self.finishBaselineCollection()
+        }
+    }
+
+    private func finishBaselineCollection() {
+        baselineProgress = 1.0
+
+        // Window 5 detik bisa lewat sebelum sampel HR pertama sampai.
+        // Kalau begitu, tunggu — jangan establish baseline tanpa data HR.
+        if !establishBaseline() {
+            awaitingBaselineHeartRate = true
+        }
+    }
+
+    @discardableResult
+    private func establishBaseline() -> Bool {
+        guard let data = BaselineData.make(
+            heartRateSamples: baselineSamples.map(\.heartRate),
+            historicalGaitSpeed: historicalGaitSpeed,
+            historicalGaitAsymmetry: historicalGaitAsymmetry,
+            historicalGaitDoubleSupport: historicalGaitDoubleSupport,
+            minHeartRateSamples: minBaselineHeartRateSamples
+        ) else { return false }
+
+        baseline = data
+        awaitingBaselineHeartRate = false
+        baselinePhase = .established
+        recalculateScore()
+        return true
+    }
+
+    // MARK: - Private — Data Handlers
+
+    private func handleNewHeartRate(bpm: Double, timestamp: Date) {
+        guard bpm > 0, baselinePhase != .idle else { return }
+
+        latestHeartRate = bpm
+        appendHeartRateReading(bpm: bpm, timestamp: timestamp)
+
+        switch baselinePhase {
+        case .collecting:
+            baselineSamples.append(
+                HealthMetricSample(
+                    timestamp: timestamp,
+                    heartRate: bpm,
+                    walkingSpeed: nil,
+                    walkingAsymmetry: nil,
+                    doubleSupportTime: nil
+                )
+            )
+            // Timer sudah habis, sampel pertama baru nyampe sekarang.
+            if awaitingBaselineHeartRate {
+                establishBaseline()
+            }
+
+        case .established:
+            recentHeartRates.append(bpm)
+            if recentHeartRates.count > recentHeartRateWindow {
+                recentHeartRates.removeFirst(recentHeartRates.count - recentHeartRateWindow)
+            }
+            recalculateScore()
+
+        case .idle:
+            break
+        }
+    }
+
+    private func handleNewWalkingData(speed: Double?, asymmetry: Double?, dst: Double?) {
+        latestWalkingSpeed = speed
+        latestWalkingAsymmetry = asymmetry
+        latestDoubleSupportTime = dst
+
+        guard baselinePhase == .established else { return }
+        recalculateScore()
+    }
+
+    private func handleModeChange(_ mode: ScoringMode) {
+        scoringMode = mode
+
+        guard baselinePhase == .established else { return }
+        recalculateScore()
+    }
+
+    // MARK: - Private — Scoring
+
+    private func recalculateScore() {
+        guard baselinePhase == .established, let baseline = baseline else { return }
+
+        let currentHR = smoothedHeartRate
+        guard currentHR > 0 else { return }
+
+        // Saat stationary, gait sengaja dikirim nil supaya engine skor murni dari HR.
+        let isWalking = scoringMode == .walking
+
+        let result = RiskScoringEngine.calculateSoberScore(
+            currentHR: currentHR,
+            currentWalkingSpeed: isWalking ? latestWalkingSpeed : nil,
+            currentAsymmetry: isWalking ? latestWalkingAsymmetry : nil,
+            currentDST: isWalking ? latestDoubleSupportTime : nil,
+            baseline: baseline,
+            mode: scoringMode
+        )
+
+        soberScore = result.soberScore
+        currentLevel = result.level
+        appendGaitReading(from: result)
+    }
+
+    /// Rata-rata beberapa HR terakhir — satu sampel mentah terlalu berisik buat skor.
+    private var smoothedHeartRate: Double {
+        guard !recentHeartRates.isEmpty else { return latestHeartRate }
+        return recentHeartRates.reduce(0, +) / Double(recentHeartRates.count)
+    }
+
+    // MARK: - Private — Chart Aggregation
+
+    private func appendHeartRateReading(bpm: Double, timestamp: Date) {
+        guard let start = sessionStartDate else { return }
+
+        let minute = max(0, Int(timestamp.timeIntervalSince(start) / 60))
+        minuteHeartRates[minute, default: []].append(bpm)
+
+        heartRateReadings = minuteHeartRates
+            .sorted { $0.key < $1.key }
+            .map { minute, values in
+                HeartRateReading(
+                    minuteOffset: minute,
+                    bpmLow: Int((values.min() ?? 0).rounded()),
+                    bpmHigh: Int((values.max() ?? 0).rounded())
+                )
+            }
+    }
+
+    private func appendGaitReading(from result: IntoxicationResult) {
+        // Cuma plot titik gait kalau gait beneran ikut dihitung di skor.
+        guard let start = sessionStartDate, result.gaitMetricsUsed > 0 else { return }
+
+        let minute = max(0, Int(Date().timeIntervalSince(start) / 60))
+        let stability = min(100, max(0, 100 - result.gaitDeviation))
+        let reading = GaitReading(minuteOffset: minute, stability: stability)
+
+        if let index = gaitReadings.firstIndex(where: { $0.minuteOffset == minute }) {
+            gaitReadings[index] = reading
+        } else {
+            gaitReadings.append(reading)
+        }
+    }
+}

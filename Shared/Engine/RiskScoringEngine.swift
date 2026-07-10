@@ -23,6 +23,11 @@ struct RiskScoringEngine {
     private static let asymmetryMaxPercent: Double = 300.0
     private static let dstMaxPercent: Double = 60.0
 
+    // MARK: - Baseline Floors
+    private static let minWalkingSpeedBaseline:   Double = 0.5   // m/s
+    private static let minAsymmetryBaseline:      Double = 1.0   // %
+    private static let minDoubleSupportBaseline:  Double = 5.0   // %
+
     // MARK: - Calculate
     static func calculateSoberScore(
         currentHR: Double,
@@ -40,28 +45,25 @@ struct RiskScoringEngine {
             : 0
 
         // Walking Speed: turun = positif (indikator mabuk, jadi kita ambil absolute drop)
-        let speedDeviation: Double
-        if let speed = currentWalkingSpeed, baseline.avgWalkingSpeed > 0 {
-            speedDeviation = ((baseline.avgWalkingSpeed - speed) / baseline.avgWalkingSpeed) * 100
-        } else {
-            speedDeviation = 0
-        }
+        let speedDeviation: Double = {
+            guard let speed = currentWalkingSpeed,
+                  let base = baseline.avgWalkingSpeed else { return 0 }
+            return ((base - speed) / max(base, minWalkingSpeedBaseline)) * 100
+        }()
 
         // Walking Asymmetry: naik = positif (indikator mabuk)
-        let asymmetryDeviation: Double
-        if let asymmetry = currentAsymmetry, baseline.avgWalkingAsymmetry > 0 {
-            asymmetryDeviation = ((asymmetry - baseline.avgWalkingAsymmetry) / baseline.avgWalkingAsymmetry) * 100
-        } else {
-            asymmetryDeviation = 0
-        }
+        let asymmetryDeviation: Double = {
+            guard let asymmetry = currentAsymmetry,
+                  let base = baseline.avgWalkingAsymmetry else { return 0 }
+            return ((asymmetry - base) / max(base, minAsymmetryBaseline)) * 100
+        }()
 
         // Double Support Time: naik = positif (indikator mabuk)
-        let dstDeviation: Double
-        if let dst = currentDST, baseline.avgDoubleSupportTime > 0 {
-            dstDeviation = ((dst - baseline.avgDoubleSupportTime) / baseline.avgDoubleSupportTime) * 100
-        } else {
-            dstDeviation = 0
-        }
+        let dstDeviation: Double = {
+            guard let dst = currentDST,
+                  let base = baseline.avgDoubleSupportTime else { return 0 }
+            return ((dst - base) / max(base, minDoubleSupportBaseline)) * 100
+        }()
 
         // --- Step 2: Normalisasi (0-1) ---
         // Clamp ke 0 minimum (jika membaik dari baseline, tidak menambah risk)
@@ -74,6 +76,7 @@ struct RiskScoringEngine {
         // Risk = sum(normalized × weight) × 100
         var weightedSum: Double = 0
         var totalWeight: Double = 0
+        var gaitMetricsUsed = 0
 
         // HR selalu tersedia (satu-satunya sinyal di mode stationary)
         weightedSum += hrNormalized * heartRateWeight
@@ -82,19 +85,22 @@ struct RiskScoringEngine {
         // Gait metrics hanya diperhitungkan saat user bergerak (mode .walking)
         // DAN baseline + data current tersedia. Saat .stationary gait diabaikan.
         if mode == .walking {
-            if currentWalkingSpeed != nil && baseline.avgWalkingSpeed > 0 {
+            if currentWalkingSpeed != nil, baseline.avgWalkingSpeed != nil {
                 weightedSum += speedNormalized * walkingSpeedWeight
                 totalWeight += walkingSpeedWeight
+                gaitMetricsUsed += 1
             }
 
-            if currentAsymmetry != nil && baseline.avgWalkingAsymmetry > 0 {
+            if currentAsymmetry != nil, baseline.avgWalkingAsymmetry != nil {
                 weightedSum += asymmetryNormalized * walkingAsymmetryWeight
                 totalWeight += walkingAsymmetryWeight
+                gaitMetricsUsed += 1
             }
 
-            if currentDST != nil && baseline.avgDoubleSupportTime > 0 {
+            if currentDST != nil, baseline.avgDoubleSupportTime != nil {
                 weightedSum += dstNormalized * doubleSupportTimeWeight
                 totalWeight += doubleSupportTimeWeight
+                gaitMetricsUsed += 1
             }
         }
 
@@ -114,7 +120,8 @@ struct RiskScoringEngine {
             heartRateNormalized: hrNormalized,
             walkingSpeedNormalized: speedNormalized,
             walkingAsymmetryNormalized: asymmetryNormalized,
-            doubleSupportTimeNormalized: dstNormalized
+            doubleSupportTimeNormalized: dstNormalized,
+            gaitMetricsUsed: gaitMetricsUsed
         )
     }
 }

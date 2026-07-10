@@ -28,6 +28,12 @@ final class HealthKitService {
     /// Waktu mulai sesi (untuk filter query)
     private var sessionStartDate: Date?
 
+    /// Panjang rolling window untuk gait "saat ini". Kalau kita rata-ratakan dari
+    /// awal sesi sampai sekarang, nilainya makin encer tiap menit dan telat banget
+    /// ngikutin kondisi user. 10 menit cukup responsif tapi masih meredam
+    /// sample gait HealthKit yang memang jarang.
+    private let currentGaitWindow: TimeInterval = 10 * 60
+
     // MARK: - Callbacks
 
     /// Dipanggil saat ada data heart rate baru. Parameter: BPM, timestamp.
@@ -143,11 +149,15 @@ final class HealthKitService {
     }
 
     private func fetchLatestWalkingMetrics() {
-        guard let startDate = sessionStartDate else { return }
+        guard let sessionStart = sessionStartDate else { return }
+
+        let now = Date()
+        // Rolling window 10 menit terakhir, tapi tidak pernah mundur sebelum sesi mulai.
+        let windowStart = max(now.addingTimeInterval(-currentGaitWindow), sessionStart)
 
         let predicate = HKQuery.predicateForSamples(
-            withStart: startDate,
-            end: Date(),
+            withStart: windowStart,
+            end: now,
             options: .strictStartDate
         )
 

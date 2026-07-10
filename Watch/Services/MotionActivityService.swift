@@ -22,8 +22,9 @@ final class MotionActivityService {
     // MARK: - Control
 
     func start() {
-        guard isAvailable, !isRunning else {
-            // Tidak ada sensor: pastikan konsumen tahu mode default.
+        guard !isRunning else { return }
+
+        guard isAvailable else {
             notify(mode: .stationary, force: true)
             return
         }

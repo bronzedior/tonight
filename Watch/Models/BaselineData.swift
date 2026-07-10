@@ -10,15 +10,13 @@ import Foundation
 struct BaselineData {
     // MARK: Averages
     let avgHeartRate: Double
-    let avgWalkingSpeed: Double
-    let avgWalkingAsymmetry: Double
-    let avgDoubleSupportTime: Double
+
+    let avgWalkingSpeed: Double?
+    let avgWalkingAsymmetry: Double?
+    let avgDoubleSupportTime: Double?
 
     // MARK: Standard Deviations
     let heartRateStdDev: Double
-    let walkingSpeedStdDev: Double
-    let walkingAsymmetryStdDev: Double
-    let doubleSupportTimeStdDev: Double
 
     /// true kalo data cukup buat baseline yang reliable
     var isEstablished: Bool
@@ -29,20 +27,16 @@ struct BaselineData {
         historicalGaitSpeed: Double?,
         historicalGaitAsymmetry: Double?,
         historicalGaitDoubleSupport: Double?,
-        minHeartRateSamples: Int = 10
+        minHeartRateSamples: Int = 1
     ) -> BaselineData? {
-        guard heartRateSamples.count >= minHeartRateSamples else { return nil }
+        guard heartRateSamples.count >= max(1, minHeartRateSamples) else { return nil }
 
         return BaselineData(
             avgHeartRate:            Self.mean(heartRateSamples),
-            avgWalkingSpeed:         historicalGaitSpeed ?? 0,
-            avgWalkingAsymmetry:     historicalGaitAsymmetry ?? 0,
-            avgDoubleSupportTime:    historicalGaitDoubleSupport ?? 0,
+            avgWalkingSpeed:         historicalGaitSpeed,
+            avgWalkingAsymmetry:     historicalGaitAsymmetry,
+            avgDoubleSupportTime:    historicalGaitDoubleSupport,
             heartRateStdDev:         Self.stdDev(heartRateSamples),
-            // Std dev gait tidak tersedia dari rata-rata historis saja.
-            walkingSpeedStdDev:      0,
-            walkingAsymmetryStdDev:  0,
-            doubleSupportTimeStdDev: 0,
             isEstablished: true
         )
     }
