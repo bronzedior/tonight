@@ -2,7 +2,7 @@
 //  SoberScoreView.swift
 //  tonight
 //
-//  Created by Fransiscus Bronzedior Driandonny Noryon on 04/07/26.
+//  Created by Fransiscus Bronzedior Driandonny Noryon on 07/07/26.
 //
 
 import SwiftUI
@@ -23,7 +23,7 @@ struct SoberScoreView: View {
         VStack(alignment: .leading, spacing: 2) {
             Text("Sober Score")
                 .font(.system(size: 16, weight: .medium))
-                .foregroundStyle(.gray)
+                .foregroundStyle(.blue)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.bottom, 8)
             
@@ -69,43 +69,12 @@ struct SoberScoreView: View {
             }
         }
         .sheet(isPresented: $showInfo) {
-            infoSheet
-        }
-    }
-    
-    var infoSheet: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 8) {
-                Text("How It Works")
-                    .font(.headline)
-                Text("Sober Score is calculated from two sensors:")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                VStack(alignment: .leading, spacing: 6) {
-                    Label {
-                        Text("Heart Rate (40%)")
-                            .font(.caption2)
-                    } icon: {
-                        Image(systemName: "heart.fill")
-                            .foregroundStyle(.pink)
-                    }
-                    Label {
-                        Text("Body Geit (60%)")
-                            .font(.caption2)
-                    } icon: {
-                        Image(systemName: "figure.walk")
-                            .foregroundStyle(.cyan)
-                    }
-                }
-                Divider()
-                VStack(alignment: .leading, spacing: 4) {
-                    scoreRangeRow("80–100", "SOBER", SoberLevel.sober.color)
-                    scoreRangeRow("60–79",  "OK",    SoberLevel.ok.color)
-                    scoreRangeRow("40–59",  "SEMI-DRUNK", SoberLevel.tipsy.color)
-                    scoreRangeRow("0–39",   "DRUNK", SoberLevel.drunk.color)
-                }
-            }
-            .padding()
+            InfoSheetView(
+                soberLevel: soberLevel,
+                timeRange: "21.39-02.34",
+                hrRange: "90-140 BPM",
+                stability: "70%"
+            )
         }
     }
     

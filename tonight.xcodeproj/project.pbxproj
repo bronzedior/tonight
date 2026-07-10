@@ -7,34 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3561AB462FF6275400784181 /* Tonight watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3561AB452FF6275400784181 /* Tonight watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35A576A82FFB319B002F9160 /* AppBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A576A72FFB3191002F9160 /* AppBackground.swift */; };
-		35A577C42FFCAFAA002F9160 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5CE2FF63D70002F1522 /* HealthKitManager.swift */; };
-		35A577EA2FFDFFA8002F9160 /* tonightWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531CC3FB2FF88BC600D6BDD2 /* tonightWatchApp.swift */; };
-		35A577F52FFDFFF5002F9160 /* RiskLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5DD2FF63DE2002F1522 /* RiskLevel.swift */; };
 		35B4A5C42FF63CCC002F1522 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B4A5C12FF63CCC002F1522 /* Assets.xcassets */; };
 		35B4A5C52FF63CCC002F1522 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C22FF63CCC002F1522 /* RootView.swift */; };
 		35B4A5C62FF63CCC002F1522 /* tonightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C32FF63CCC002F1522 /* tonightApp.swift */; };
+		53921D322FFCA98900594BCE /* tonight watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 53921D282FFCA98800594BCE /* tonight watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3561AB472FF6275400784181 /* PBXContainerItemProxy */ = {
+		53921D302FFCA98900594BCE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3561AB1F2FF625D700784181 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 3561AB442FF6275400784181;
-			remoteInfo = "Tonight watch Watch App";
+			remoteGlobalIDString = 53921D272FFCA98800594BCE;
+			remoteInfo = "tonight watch Watch App";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		3561AB532FF6275400784181 /* Embed Watch Content */ = {
+		53921D362FFCA98900594BCE /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				3561AB462FF6275400784181 /* Tonight watch Watch App.app in Embed Watch Content */,
+				53921D322FFCA98900594BCE /* tonight watch Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,8 +40,6 @@
 
 /* Begin PBXFileReference section */
 		3561AB272FF625D700784181 /* tonight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tonight.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3561AB392FF6275300784181 /* Tonight watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tonight watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3561AB452FF6275400784181 /* Tonight watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tonight watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35A576A62FFA8F74002F9160 /* tonight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tonight.entitlements; sourceTree = "<group>"; };
 		35A576A72FFB3191002F9160 /* AppBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBackground.swift; sourceTree = "<group>"; };
 		35B4A5C12FF63CCC002F1522 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,36 +48,8 @@
 		35B4A5CE2FF63D70002F1522 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		35B4A5DD2FF63DE2002F1522 /* RiskLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskLevel.swift; sourceTree = "<group>"; };
 		35B4A5DE2FF63DF1002F1522 /* RiskScoringEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskScoringEngine.swift; sourceTree = "<group>"; };
-		531CC3FB2FF88BC600D6BDD2 /* tonightWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tonightWatchApp.swift; sourceTree = "<group>"; };
+		53921D282FFCA98800594BCE /* tonight watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tonight watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		35A577EC2FFDFFBD002F9160 /* Exceptions for "Views" folder in "Tonight watch Watch App" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				BodyGaitChartView.swift,
-				HeartRateChartView.swift,
-				SoberScoreView.swift,
-				StartView.swift,
-			);
-			target = 3561AB442FF6275400784181 /* Tonight watch Watch App */;
-		};
-		35A577F12FFDFFD1002F9160 /* Exceptions for "Models" folder in "Tonight watch Watch App" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				SensorData.swift,
-			);
-			target = 3561AB442FF6275400784181 /* Tonight watch Watch App */;
-		};
-		35A577F32FFDFFD6002F9160 /* Exceptions for "Components" folder in "Tonight watch Watch App" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				CircularGauge.swift,
-				CloseSessionModifier.swift,
-			);
-			target = 3561AB442FF6275400784181 /* Tonight watch Watch App */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		35DA82B52FF74992001EC78E /* Onboarding */ = {
@@ -90,28 +57,9 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
-		531CC3F12FF88B2F00D6BDD2 /* Components */ = {
+		53921D292FFCA98800594BCE /* Watch */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				35A577F32FFDFFD6002F9160 /* Exceptions for "Components" folder in "Tonight watch Watch App" target */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		531CC3F22FF88B3500D6BDD2 /* Models */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				35A577F12FFDFFD1002F9160 /* Exceptions for "Models" folder in "Tonight watch Watch App" target */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		531CC3F32FF88B3800D6BDD2 /* Views */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				35A577EC2FFDFFBD002F9160 /* Exceptions for "Views" folder in "Tonight watch Watch App" target */,
-			);
-			path = Views;
+			path = Watch;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -124,14 +72,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3561AB362FF6275300784181 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3561AB422FF6275400784181 /* Frameworks */ = {
+		53921D252FFCA98800594BCE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -146,8 +87,8 @@
 			children = (
 				35A576A62FFA8F74002F9160 /* tonight.entitlements */,
 				35B4A5DC2FF63DD9002F1522 /* Shared */,
-				35B4A5D42FF63D95002F1522 /* Watch */,
 				3561AB782FF63B3C00784181 /* IOS */,
+				53921D292FFCA98800594BCE /* Watch */,
 				3561AB282FF625D700784181 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -156,8 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				3561AB272FF625D700784181 /* tonight.app */,
-				3561AB392FF6275300784181 /* Tonight watch.app */,
-				3561AB452FF6275400784181 /* Tonight watch Watch App.app */,
+				53921D282FFCA98800594BCE /* tonight watch Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -223,17 +163,6 @@
 			path = IOS;
 			sourceTree = "<group>";
 		};
-		35B4A5D42FF63D95002F1522 /* Watch */ = {
-			isa = PBXGroup;
-			children = (
-				531CC3FB2FF88BC600D6BDD2 /* tonightWatchApp.swift */,
-				531CC3F12FF88B2F00D6BDD2 /* Components */,
-				531CC3F22FF88B3500D6BDD2 /* Models */,
-				531CC3F32FF88B3800D6BDD2 /* Views */,
-			);
-			path = Watch;
-			sourceTree = "<group>";
-		};
 		35B4A5D82FF63DD9002F1522 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,10 +214,12 @@
 				3561AB232FF625D700784181 /* Sources */,
 				3561AB242FF625D700784181 /* Frameworks */,
 				3561AB252FF625D700784181 /* Resources */,
+				53921D362FFCA98900594BCE /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				53921D312FFCA98900594BCE /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				35DA82B52FF74992001EC78E /* Onboarding */,
@@ -300,44 +231,26 @@
 			productReference = 3561AB272FF625D700784181 /* tonight.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3561AB382FF6275300784181 /* Tonight watch */ = {
+		53921D272FFCA98800594BCE /* tonight watch Watch App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3561AB542FF6275400784181 /* Build configuration list for PBXNativeTarget "Tonight watch" */;
+			buildConfigurationList = 53921D332FFCA98900594BCE /* Build configuration list for PBXNativeTarget "tonight watch Watch App" */;
 			buildPhases = (
-				3561AB352FF6275300784181 /* Sources */,
-				3561AB362FF6275300784181 /* Frameworks */,
-				3561AB372FF6275300784181 /* Resources */,
-				3561AB532FF6275400784181 /* Embed Watch Content */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3561AB482FF6275400784181 /* PBXTargetDependency */,
-			);
-			name = "Tonight watch";
-			packageProductDependencies = (
-			);
-			productName = "Tonight watch";
-			productReference = 3561AB392FF6275300784181 /* Tonight watch.app */;
-			productType = "com.apple.product-type.application";
-		};
-		3561AB442FF6275400784181 /* Tonight watch Watch App */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3561AB502FF6275400784181 /* Build configuration list for PBXNativeTarget "Tonight watch Watch App" */;
-			buildPhases = (
-				3561AB412FF6275400784181 /* Sources */,
-				3561AB422FF6275400784181 /* Frameworks */,
-				3561AB432FF6275400784181 /* Resources */,
+				53921D242FFCA98800594BCE /* Sources */,
+				53921D252FFCA98800594BCE /* Frameworks */,
+				53921D262FFCA98800594BCE /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Tonight watch Watch App";
+			fileSystemSynchronizedGroups = (
+				53921D292FFCA98800594BCE /* Watch */,
+			);
+			name = "tonight watch Watch App";
 			packageProductDependencies = (
 			);
-			productName = "Tonight watch Watch App";
-			productReference = 3561AB452FF6275400784181 /* Tonight watch Watch App.app */;
+			productName = "tonight watch Watch App";
+			productReference = 53921D282FFCA98800594BCE /* tonight watch Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -347,17 +260,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2650;
+				LastSwiftUpdateCheck = 2660;
 				LastUpgradeCheck = 2660;
 				TargetAttributes = {
 					3561AB262FF625D700784181 = {
 						CreatedOnToolsVersion = 26.5;
 					};
-					3561AB382FF6275300784181 = {
-						CreatedOnToolsVersion = 26.5;
-					};
-					3561AB442FF6275400784181 = {
-						CreatedOnToolsVersion = 26.5;
+					53921D272FFCA98800594BCE = {
+						CreatedOnToolsVersion = 26.6;
 					};
 				};
 			};
@@ -376,8 +286,7 @@
 			projectRoot = "";
 			targets = (
 				3561AB262FF625D700784181 /* tonight */,
-				3561AB382FF6275300784181 /* Tonight watch */,
-				3561AB442FF6275400784181 /* Tonight watch Watch App */,
+				53921D272FFCA98800594BCE /* tonight watch Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -391,14 +300,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3561AB372FF6275300784181 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3561AB432FF6275400784181 /* Resources */ = {
+		53921D262FFCA98800594BCE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -413,35 +315,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				35B4A5C52FF63CCC002F1522 /* RootView.swift in Sources */,
-				35A577C42FFCAFAA002F9160 /* HealthKitManager.swift in Sources */,
 				35B4A5C62FF63CCC002F1522 /* tonightApp.swift in Sources */,
 				35A576A82FFB319B002F9160 /* AppBackground.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3561AB352FF6275300784181 /* Sources */ = {
+		53921D242FFCA98800594BCE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3561AB412FF6275400784181 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				35A577EA2FFDFFA8002F9160 /* tonightWatchApp.swift in Sources */,
-				35A577F52FFDFFF5002F9160 /* RiskLevel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3561AB482FF6275400784181 /* PBXTargetDependency */ = {
+		53921D312FFCA98900594BCE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3561AB442FF6275400784181 /* Tonight watch Watch App */;
-			targetProxy = 3561AB472FF6275400784181 /* PBXContainerItemProxy */;
+			target = 53921D272FFCA98800594BCE /* tonight watch Watch App */;
+			targetProxy = 53921D302FFCA98900594BCE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -623,7 +515,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 47T6L682CY;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -662,7 +554,7 @@
 			};
 			name = Release;
 		};
-		3561AB512FF6275400784181 /* Debug */ = {
+		53921D342FFCA98900594BCE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -672,19 +564,18 @@
 				DEVELOPMENT_TEAM = 47T6L682CY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Tonight watch";
+				INFOPLIST_KEY_CFBundleDisplayName = "tonight watch";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "Bronzedior.Tonight-watch";
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = Bronzedior.tonight;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Bronzedior.Tonight-watch.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -692,33 +583,32 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+				WATCHOS_DEPLOYMENT_TARGET = 26.5;
 			};
 			name = Debug;
 		};
-		3561AB522FF6275400784181 /* Release */ = {
+		53921D352FFCA98900594BCE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 47T6L682CY;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Tonight watch";
+				INFOPLIST_KEY_CFBundleDisplayName = "tonight watch";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "Bronzedior.Tonight-watch";
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = Bronzedior.tonight;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Bronzedior.Tonight-watch.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -727,78 +617,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 26.0;
-			};
-			name = Release;
-		};
-		3561AB552FF6275400784181 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 47T6L682CY;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Tonight watch";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Bronzedior.Tonight-watch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		3561AB562FF6275400784181 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 47T6L682CY;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Tonight watch";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Bronzedior.Tonight-watch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 26.5;
 			};
 			name = Release;
 		};
@@ -823,20 +642,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3561AB502FF6275400784181 /* Build configuration list for PBXNativeTarget "Tonight watch Watch App" */ = {
+		53921D332FFCA98900594BCE /* Build configuration list for PBXNativeTarget "tonight watch Watch App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3561AB512FF6275400784181 /* Debug */,
-				3561AB522FF6275400784181 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3561AB542FF6275400784181 /* Build configuration list for PBXNativeTarget "Tonight watch" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3561AB552FF6275400784181 /* Debug */,
-				3561AB562FF6275400784181 /* Release */,
+				53921D342FFCA98900594BCE /* Debug */,
+				53921D352FFCA98900594BCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

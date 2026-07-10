@@ -1,8 +1,8 @@
 //
-//  tonightWatchApp.swift
-//  tonight
+//  tonight_watchApp.swift
+//  tonight watch Watch App
 //
-//  Created by Fransiscus Bronzedior Driandonny Noryon on 04/07/26.
+//  Created by Fransiscus Bronzedior Driandonny Noryon on 07/07/26.
 //
 
 import SwiftUI
