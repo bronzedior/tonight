@@ -8,23 +8,25 @@
 import SwiftUI
 
 struct SoberScoreView: View {
-    @ObservedObject var viewModel: SessionViewModel
-
+    var score: Int
+    var date: Date
+    
     var soberLevel: SoberLevel {
-        SoberLevel.from(score: viewModel.soberScore)
+        SoberLevel.from(score: score)
     }
-
+    
     @State var animatedProgress: Double = 0
     @State var showInfo: Bool = false
-
+    @Binding var isMonitoring: Bool
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text("Sober Score")
                 .font(.system(size: 16, weight: .medium))
-                .foregroundStyle(.gray)
+                .foregroundStyle(.blue)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.bottom, 8)
-
+            
             ZStack {
                 CircularGauge(
                     progress: animatedProgress,
@@ -32,7 +34,7 @@ struct SoberScoreView: View {
                     trackColor: Color(white: 0.20),
                     progressColor: soberLevel.color
                 )
-                Text("\(viewModel.soberScore)")
+                Text("\(score)")
                     .font(.system(size: 44, weight: .bold, design: .rounded))
                     .foregroundStyle(soberLevel.color)
                     .contentTransition(.numericText())
@@ -40,12 +42,12 @@ struct SoberScoreView: View {
             .frame(width: 120, height: 120)
             .frame(maxWidth: .infinity)
             .padding(.top, 8)
-
+            
             HStack(spacing: 6) {
                 Text(soberLevel.rawValue)
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                     .foregroundStyle(soberLevel.color)
-
+                
                 Button { showInfo.toggle() } label: {
                     Image(systemName: "info.circle")
                         .font(.system(size: 14))
@@ -53,81 +55,29 @@ struct SoberScoreView: View {
                 }
                 .buttonStyle(.plain)
             }
-
-            Text(viewModel.sessionDate, format: .dateTime.day().month(.abbreviated))
+            
+            Text(date, format: .dateTime.day().month(.abbreviated))
                 .font(.system(size: 16, weight: .regular, design: .rounded))
                 .foregroundStyle(.gray)
         }
-        .closeSession(isMonitoring: $viewModel.isMonitoring) {
-            viewModel.stopSession()
-        }
+        .closeSession(isMonitoring: $isMonitoring)
         .padding(.horizontal, 10)
         .containerBackground(.black, for: .tabView)
         .onAppear {
             withAnimation(.easeInOut(duration: 1.2)) {
-                animatedProgress = Double(viewModel.soberScore) / 100.0
-            }
-        }
-        .onChange(of: viewModel.soberScore) { _, newScore in
-            withAnimation(.easeInOut(duration: 0.8)) {
-                animatedProgress = Double(newScore) / 100.0
+                animatedProgress = Double(score) / 100.0
             }
         }
         .sheet(isPresented: $showInfo) {
-            infoSheet
+            InfoSheetView(
+                soberLevel: soberLevel,
+                timeRange: "21.39-02.34",
+                hrRange: "90-140 BPM",
+                stability: "70%"
+            )
         }
     }
-
-    var infoSheet: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 8) {
-                Text("How It Works")
-                    .font(.headline)
-                Text("Sober Score is calculated from health metrics compared to your baseline:")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                VStack(alignment: .leading, spacing: 6) {
-                    Label {
-                        Text("Heart Rate (30%)")
-                            .font(.caption2)
-                    } icon: {
-                        Image(systemName: "heart.fill")
-                            .foregroundStyle(.pink)
-                    }
-                    Label {
-                        Text("Walking Speed (20%)")
-                            .font(.caption2)
-                    } icon: {
-                        Image(systemName: "figure.walk")
-                            .foregroundStyle(.cyan)
-                    }
-                    Label {
-                        Text("Walking Asymmetry (30%)")
-                            .font(.caption2)
-                    } icon: {
-                        Image(systemName: "figure.walk.diamond.fill")
-                            .foregroundStyle(.orange)
-                    }
-                    Label {
-                        Text("Double Support (20%)")
-                            .font(.caption2)
-                    } icon: {
-                        Image(systemName: "shoe.2.fill")
-                            .foregroundStyle(.green)
-                    }
-                }
-                Divider()
-                VStack(alignment: .leading, spacing: 4) {
-                    scoreRangeRow("80–100", "SOBER", SoberLevel.sober.color)
-                    scoreRangeRow("60–79",  "OK",    SoberLevel.ok.color)
-                    scoreRangeRow("40–59",  "SEMI-DRUNK", SoberLevel.semiDrunk.color)
-                    scoreRangeRow("0–39",   "DRUNK", SoberLevel.drunk.color)
-                }
-            }
-            .padding()
-        }
-    }
-
+    
     func scoreRangeRow(_ range: String, _ label: String, _ color: Color) -> some View {
         HStack {
             Circle()
@@ -146,5 +96,5 @@ struct SoberScoreView: View {
 }
 
 #Preview("Score 100 — SOBER") {
-    SoberScoreView(viewModel: SessionViewModel())
+    SoberScoreView(score: 100, date: Date(), isMonitoring: .constant(true))
 }
