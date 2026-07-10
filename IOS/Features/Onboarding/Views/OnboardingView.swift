@@ -19,20 +19,17 @@ struct OnboardingView: View {
             }
             
         case 1:
-            NameInputView(viewModel: viewModel)
-            
-        case 2:
             HowItWorksView(viewModel: viewModel)
             
-        case 3:
+        case 2:
             ConnectWatchView(viewModel: viewModel)
-            
-        case 4:
+
+        case 3:
             HealthPermissionView(viewModel: viewModel)
-            
-        case 5:
+
+        case 4:
             FinishView(viewModel: viewModel)
-            
+
         default:
             EmptyView()
         }

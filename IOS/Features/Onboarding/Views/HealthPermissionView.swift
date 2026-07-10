@@ -20,9 +20,10 @@ struct HealthPermissionView: View {
             subtitle: "We only read the health data required to estimate your condition. Your data never leaves your device.",
             buttonTitle: "Allow Access",
             header: {
-                Image(systemName: "heart.text.square.fill")
-                    .font(.system(size: 80))
-                    .foregroundStyle(.white)
+                Image("AppleHealthIcon")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 88, height: 88)
 
             },
             content: {

@@ -19,7 +19,7 @@ final class OnboardingViewModel: ObservableObject {
     @Published var showPermissionDenied = false
     
     func next() {
-        guard currentStep < 5 else {return }
+        guard currentStep < 4 else {return }
         currentStep += 1
     }
     
