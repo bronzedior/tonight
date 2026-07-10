@@ -9,7 +9,11 @@
 /* Begin PBXBuildFile section */
 		3561AB462FF6275400784181 /* Tonight watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3561AB452FF6275400784181 /* Tonight watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35A576A82FFB319B002F9160 /* AppBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A576A72FFB3191002F9160 /* AppBackground.swift */; };
+<<<<<<< Updated upstream
 		35A577C42FFCAFAA002F9160 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5CE2FF63D70002F1522 /* HealthKitManager.swift */; };
+=======
+		35A578302FFE016D002F9160 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5CE2FF63D70002F1522 /* HealthKitManager.swift */; };
+>>>>>>> Stashed changes
 		35B4A5C42FF63CCC002F1522 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B4A5C12FF63CCC002F1522 /* Assets.xcassets */; };
 		35B4A5C52FF63CCC002F1522 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C22FF63CCC002F1522 /* RootView.swift */; };
 		35B4A5C62FF63CCC002F1522 /* tonightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C32FF63CCC002F1522 /* tonightApp.swift */; };
@@ -56,6 +60,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		35A578312FFE0599002F9160 /* History */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = History;
+			sourceTree = "<group>";
+		};
 		35DA82B52FF74992001EC78E /* Onboarding */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Onboarding;
@@ -152,6 +161,7 @@
 		3561AB742FF63B3C00784181 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				35A578312FFE0599002F9160 /* History */,
 				35DA82B52FF74992001EC78E /* Onboarding */,
 			);
 			path = Features;
@@ -261,6 +271,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				35A578312FFE0599002F9160 /* History */,
 				35DA82B52FF74992001EC78E /* Onboarding */,
 			);
 			name = tonight;
@@ -413,7 +424,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				35B4A5C52FF63CCC002F1522 /* RootView.swift in Sources */,
+<<<<<<< Updated upstream
 				35A577C42FFCAFAA002F9160 /* HealthKitManager.swift in Sources */,
+=======
+				35A578302FFE016D002F9160 /* HealthKitManager.swift in Sources */,
+>>>>>>> Stashed changes
 				35B4A5C62FF63CCC002F1522 /* tonightApp.swift in Sources */,
 				35A576A82FFB319B002F9160 /* AppBackground.swift in Sources */,
 			);

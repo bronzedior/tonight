@@ -36,3 +36,7 @@ struct FinishView: View {
         )
     }
 }
+
+#Preview {
+    FinishView(viewModel: OnboardingViewModel())
+}
