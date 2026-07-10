@@ -8,6 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		35A576A82FFB319B002F9160 /* AppBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A576A72FFB3191002F9160 /* AppBackground.swift */; };
+		35A57A0A3000C530002F9160 /* FactorChartMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579E03000C530002F9160 /* FactorChartMetrics.swift */; };
+		35A57A0B3000C530002F9160 /* HistorySummaryHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579EA3000C530002F9160 /* HistorySummaryHeader.swift */; };
+		35A57A0E3000C530002F9160 /* TimelineRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579F13000C530002F9160 /* TimelineRenderer.swift */; };
+		35A57A0F3000C530002F9160 /* EmptyHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579E23000C530002F9160 /* EmptyHistoryView.swift */; };
+		35A57A103000C530002F9160 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A57A073000C530002F9160 /* HistoryView.swift */; };
+		35A57A113000C530002F9160 /* HistoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579FC3000C530002F9160 /* HistoryMock.swift */; };
+		35A57A123000C530002F9160 /* DateSelectorPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579E93000C530002F9160 /* DateSelectorPopover.swift */; };
+		35A57A133000C530002F9160 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A57A043000C530002F9160 /* HistoryViewModel.swift */; };
+		35A57A163000C530002F9160 /* AboutScoreSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579EC3000C530002F9160 /* AboutScoreSheet.swift */; };
+		35A57A173000C530002F9160 /* TimelineXAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579F23000C530002F9160 /* TimelineXAxis.swift */; };
+		35A57A183000C530002F9160 /* ImpairmentLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A57A003000C530002F9160 /* ImpairmentLevel.swift */; };
+		35A57A193000C530002F9160 /* FactorCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579E53000C530002F9160 /* FactorCard.swift */; };
+		35A57A1A3000C530002F9160 /* TimelineCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579EE3000C530002F9160 /* TimelineCard.swift */; };
+		35A57A1B3000C530002F9160 /* HeartRateChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579E63000C530002F9160 /* HeartRateChart.swift */; };
+		35A57A1E3000C530002F9160 /* TimelineLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579F03000C530002F9160 /* TimelineLegend.swift */; };
+		35A57A1F3000C530002F9160 /* TimelinePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A57A023000C530002F9160 /* TimelinePoint.swift */; };
+		35A57A203000C530002F9160 /* HeartRateSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579FF3000C530002F9160 /* HeartRateSample.swift */; };
+		35A57A213000C530002F9160 /* BodyGaitSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579FE3000C530002F9160 /* BodyGaitSample.swift */; };
+		35A57A223000C530002F9160 /* TimelineGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579EF3000C530002F9160 /* TimelineGrid.swift */; };
+		35A57A233000C530002F9160 /* TimelineYAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579F33000C530002F9160 /* TimelineYAxis.swift */; };
+		35A57A243000C530002F9160 /* SessionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A57A013000C530002F9160 /* SessionHistory.swift */; };
+		35A57A263000C530002F9160 /* BodyGaitChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579E43000C530002F9160 /* BodyGaitChart.swift */; };
+		35A57A273000C530002F9160 /* DateSelectorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A579E83000C530002F9160 /* DateSelectorButton.swift */; };
+		35A57A283000C5CE002F9160 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5CE2FF63D70002F1522 /* HealthKitManager.swift */; };
 		35B4A5C42FF63CCC002F1522 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B4A5C12FF63CCC002F1522 /* Assets.xcassets */; };
 		35B4A5C52FF63CCC002F1522 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C22FF63CCC002F1522 /* RootView.swift */; };
 		35B4A5C62FF63CCC002F1522 /* tonightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C32FF63CCC002F1522 /* tonightApp.swift */; };
@@ -42,6 +66,29 @@
 		3561AB272FF625D700784181 /* tonight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tonight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35A576A62FFA8F74002F9160 /* tonight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tonight.entitlements; sourceTree = "<group>"; };
 		35A576A72FFB3191002F9160 /* AppBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBackground.swift; sourceTree = "<group>"; };
+		35A579E03000C530002F9160 /* FactorChartMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactorChartMetrics.swift; sourceTree = "<group>"; };
+		35A579E23000C530002F9160 /* EmptyHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyHistoryView.swift; sourceTree = "<group>"; };
+		35A579E43000C530002F9160 /* BodyGaitChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyGaitChart.swift; sourceTree = "<group>"; };
+		35A579E53000C530002F9160 /* FactorCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactorCard.swift; sourceTree = "<group>"; };
+		35A579E63000C530002F9160 /* HeartRateChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateChart.swift; sourceTree = "<group>"; };
+		35A579E83000C530002F9160 /* DateSelectorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectorButton.swift; sourceTree = "<group>"; };
+		35A579E93000C530002F9160 /* DateSelectorPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectorPopover.swift; sourceTree = "<group>"; };
+		35A579EA3000C530002F9160 /* HistorySummaryHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySummaryHeader.swift; sourceTree = "<group>"; };
+		35A579EC3000C530002F9160 /* AboutScoreSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutScoreSheet.swift; sourceTree = "<group>"; };
+		35A579EE3000C530002F9160 /* TimelineCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCard.swift; sourceTree = "<group>"; };
+		35A579EF3000C530002F9160 /* TimelineGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineGrid.swift; sourceTree = "<group>"; };
+		35A579F03000C530002F9160 /* TimelineLegend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineLegend.swift; sourceTree = "<group>"; };
+		35A579F13000C530002F9160 /* TimelineRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineRenderer.swift; sourceTree = "<group>"; };
+		35A579F23000C530002F9160 /* TimelineXAxis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineXAxis.swift; sourceTree = "<group>"; };
+		35A579F33000C530002F9160 /* TimelineYAxis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineYAxis.swift; sourceTree = "<group>"; };
+		35A579FC3000C530002F9160 /* HistoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryMock.swift; sourceTree = "<group>"; };
+		35A579FE3000C530002F9160 /* BodyGaitSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyGaitSample.swift; sourceTree = "<group>"; };
+		35A579FF3000C530002F9160 /* HeartRateSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateSample.swift; sourceTree = "<group>"; };
+		35A57A003000C530002F9160 /* ImpairmentLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpairmentLevel.swift; sourceTree = "<group>"; };
+		35A57A013000C530002F9160 /* SessionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHistory.swift; sourceTree = "<group>"; };
+		35A57A023000C530002F9160 /* TimelinePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePoint.swift; sourceTree = "<group>"; };
+		35A57A043000C530002F9160 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		35A57A073000C530002F9160 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		35B4A5C12FF63CCC002F1522 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35B4A5C22FF63CCC002F1522 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		35B4A5C32FF63CCC002F1522 /* tonightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tonightApp.swift; sourceTree = "<group>"; };
@@ -122,6 +169,7 @@
 		3561AB742FF63B3C00784181 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				35A57A093000C530002F9160 /* History */,
 				35DA82B52FF74992001EC78E /* Onboarding */,
 			);
 			path = Features;
@@ -161,6 +209,124 @@
 				3561AB772FF63B3C00784181 /* Services */,
 			);
 			path = IOS;
+			sourceTree = "<group>";
+		};
+		35A579E13000C530002F9160 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				35A579E03000C530002F9160 /* FactorChartMetrics.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		35A579E33000C530002F9160 /* Empty */ = {
+			isa = PBXGroup;
+			children = (
+				35A579E23000C530002F9160 /* EmptyHistoryView.swift */,
+			);
+			path = Empty;
+			sourceTree = "<group>";
+		};
+		35A579E73000C530002F9160 /* Factors */ = {
+			isa = PBXGroup;
+			children = (
+				35A579E43000C530002F9160 /* BodyGaitChart.swift */,
+				35A579E53000C530002F9160 /* FactorCard.swift */,
+				35A579E63000C530002F9160 /* HeartRateChart.swift */,
+			);
+			path = Factors;
+			sourceTree = "<group>";
+		};
+		35A579EB3000C530002F9160 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				35A579E83000C530002F9160 /* DateSelectorButton.swift */,
+				35A579E93000C530002F9160 /* DateSelectorPopover.swift */,
+				35A579EA3000C530002F9160 /* HistorySummaryHeader.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		35A579ED3000C530002F9160 /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				35A579EC3000C530002F9160 /* AboutScoreSheet.swift */,
+			);
+			path = Sheets;
+			sourceTree = "<group>";
+		};
+		35A579F43000C530002F9160 /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				35A579EE3000C530002F9160 /* TimelineCard.swift */,
+				35A579EF3000C530002F9160 /* TimelineGrid.swift */,
+				35A579F03000C530002F9160 /* TimelineLegend.swift */,
+				35A579F13000C530002F9160 /* TimelineRenderer.swift */,
+				35A579F23000C530002F9160 /* TimelineXAxis.swift */,
+				35A579F33000C530002F9160 /* TimelineYAxis.swift */,
+			);
+			path = Timeline;
+			sourceTree = "<group>";
+		};
+		35A579FB3000C530002F9160 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				35A579E13000C530002F9160 /* Charts */,
+				35A579E33000C530002F9160 /* Empty */,
+				35A579E73000C530002F9160 /* Factors */,
+				35A579EB3000C530002F9160 /* Header */,
+				35A579ED3000C530002F9160 /* Sheets */,
+				35A579F43000C530002F9160 /* Timeline */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		35A579FD3000C530002F9160 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				35A579FC3000C530002F9160 /* HistoryMock.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		35A57A033000C530002F9160 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				35A579FE3000C530002F9160 /* BodyGaitSample.swift */,
+				35A579FF3000C530002F9160 /* HeartRateSample.swift */,
+				35A57A003000C530002F9160 /* ImpairmentLevel.swift */,
+				35A57A013000C530002F9160 /* SessionHistory.swift */,
+				35A57A023000C530002F9160 /* TimelinePoint.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		35A57A053000C530002F9160 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				35A57A043000C530002F9160 /* HistoryViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		35A57A083000C530002F9160 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				35A57A073000C530002F9160 /* HistoryView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		35A57A093000C530002F9160 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				35A579FB3000C530002F9160 /* Components */,
+				35A579FD3000C530002F9160 /* Mock */,
+				35A57A033000C530002F9160 /* Models */,
+				35A57A053000C530002F9160 /* ViewModel */,
+				35A57A083000C530002F9160 /* Views */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 		35B4A5D82FF63DD9002F1522 /* Engine */ = {
@@ -315,6 +481,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				35B4A5C52FF63CCC002F1522 /* RootView.swift in Sources */,
+				35A57A0A3000C530002F9160 /* FactorChartMetrics.swift in Sources */,
+				35A57A0B3000C530002F9160 /* HistorySummaryHeader.swift in Sources */,
+				35A57A0E3000C530002F9160 /* TimelineRenderer.swift in Sources */,
+				35A57A0F3000C530002F9160 /* EmptyHistoryView.swift in Sources */,
+				35A57A103000C530002F9160 /* HistoryView.swift in Sources */,
+				35A57A113000C530002F9160 /* HistoryMock.swift in Sources */,
+				35A57A123000C530002F9160 /* DateSelectorPopover.swift in Sources */,
+				35A57A133000C530002F9160 /* HistoryViewModel.swift in Sources */,
+				35A57A163000C530002F9160 /* AboutScoreSheet.swift in Sources */,
+				35A57A173000C530002F9160 /* TimelineXAxis.swift in Sources */,
+				35A57A283000C5CE002F9160 /* HealthKitManager.swift in Sources */,
+				35A57A183000C530002F9160 /* ImpairmentLevel.swift in Sources */,
+				35A57A193000C530002F9160 /* FactorCard.swift in Sources */,
+				35A57A1A3000C530002F9160 /* TimelineCard.swift in Sources */,
+				35A57A1B3000C530002F9160 /* HeartRateChart.swift in Sources */,
+				35A57A1E3000C530002F9160 /* TimelineLegend.swift in Sources */,
+				35A57A1F3000C530002F9160 /* TimelinePoint.swift in Sources */,
+				35A57A203000C530002F9160 /* HeartRateSample.swift in Sources */,
+				35A57A213000C530002F9160 /* BodyGaitSample.swift in Sources */,
+				35A57A223000C530002F9160 /* TimelineGrid.swift in Sources */,
+				35A57A233000C530002F9160 /* TimelineYAxis.swift in Sources */,
+				35A57A243000C530002F9160 /* SessionHistory.swift in Sources */,
+				35A57A263000C530002F9160 /* BodyGaitChart.swift in Sources */,
+				35A57A273000C530002F9160 /* DateSelectorButton.swift in Sources */,
 				35B4A5C62FF63CCC002F1522 /* tonightApp.swift in Sources */,
 				35A576A82FFB319B002F9160 /* AppBackground.swift in Sources */,
 			);
