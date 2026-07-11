@@ -14,7 +14,7 @@ struct RootView: View {
     
     var body: some View {
         if hasCompletedOnboarding {
-            Text("Home")
+            HistoryView()
         } else {
             OnboardingView()
         }

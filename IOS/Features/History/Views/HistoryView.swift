@@ -331,26 +331,26 @@ private extension HistoryView {
             Image(systemName: "info")
                 .font(
                     .system(
-                        size: 16,
-                        weight: .semibold
+                        size: 20,
+                        weight: .medium
                     )
                 )
                 .foregroundStyle(.white)
                 .frame(
-                    width: 40,
-                    height: 40
+                    width: 54,
+                    height: 54
                 )
                 .background {
                     Circle()
                         .fill(
-                            Color.black.opacity(0.24)
+                            Color.black.opacity(0.28)
                         )
                 }
                 .overlay {
                     Circle()
                         .stroke(
-                            Color.white.opacity(0.18),
-                            lineWidth: 0.8
+                            Color.white.opacity(0.28),
+                            lineWidth: 1
                         )
                 }
         }
@@ -745,3 +745,4 @@ private extension HistoryView {
 #Preview {
     HistoryView()
 }
+
