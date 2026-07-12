@@ -37,6 +37,7 @@
 		35B4A5C62FF63CCC002F1522 /* tonightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5C32FF63CCC002F1522 /* tonightApp.swift */; };
 		53921D322FFCA98900594BCE /* tonight watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 53921D282FFCA98800594BCE /* tonight watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		53CDFAB3300106EF000DA79C /* SDWebImageLottieCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 53CDFAB2300106EF000DA79C /* SDWebImageLottieCoder */; };
+		AA0000012FFCA98900594BCE /* RiskScoringEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5DE2FF63DF1002F1522 /* RiskScoringEngine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -520,6 +521,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0000012FFCA98900594BCE /* RiskScoringEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,6 +763,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "tonight watch";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Tonight uses your heart rate and walking metrics to estimate your impairment level while drinking.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Tonight uses motion activity to tell whether you're standing still or walking, so it can score your gait accordingly.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = Bronzedior.tonight;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -794,6 +798,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "tonight watch";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Tonight uses your heart rate and walking metrics to estimate your impairment level while drinking.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Tonight uses motion activity to tell whether you're standing still or walking, so it can score your gait accordingly.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = Bronzedior.tonight;
 				LD_RUNPATH_SEARCH_PATHS = (
