@@ -10,7 +10,11 @@ import SwiftUI
 struct SessionActionView: View {
     @Binding var isMonitoring: Bool
     @Binding var activeTab: Int
-    
+
+    /// Dipanggil saat user benar-benar mengakhiri sesi (Stop Tracking).
+    /// Diteruskan ke viewModel.stopSession() supaya HealthKit + CoreMotion berhenti.
+    var onEnd: () -> Void = {}
+
     @State var showEndSession = false
     @State var showEmergency = false
     
@@ -80,7 +84,7 @@ struct SessionActionView: View {
         .padding(.horizontal, 10)
         .containerBackground(.black, for: .tabView)
         .fullScreenCover(isPresented: $showEndSession) {
-            EndSessionConfirmView(isMonitoring: $isMonitoring, isPresented: $showEndSession)
+            EndSessionConfirmView(isMonitoring: $isMonitoring, isPresented: $showEndSession, onEnd: onEnd)
         }
         .fullScreenCover(isPresented: $showEmergency) {
             EmergencyCountdownView(isPresented: $showEmergency)
@@ -99,7 +103,8 @@ struct SessionActionView: View {
 struct EndSessionConfirmView: View {
     @Binding var isMonitoring: Bool
     @Binding var isPresented: Bool
-    
+    var onEnd: () -> Void = {}
+
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
@@ -131,6 +136,7 @@ struct EndSessionConfirmView: View {
                 Button {
                     // TODO: Save session data before ending
                     isPresented = false
+                    onEnd()          // viewModel.stopSession() menghentikan HealthKit + CoreMotion
                     isMonitoring = false
                 } label: {
                     Text("Stop Tracking")
