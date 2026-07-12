@@ -21,7 +21,7 @@ final class HistoryViewModel: ObservableObject {
 
     init(
         sessions: [SessionHistory] =
-            HistoryMock.sessions
+            SessionSyncManager.shared.sessions
     ) {
         let sortedSessions = sessions.sorted {
             $0.startDate > $1.startDate
@@ -30,6 +30,23 @@ final class HistoryViewModel: ObservableObject {
         self.sessions = sortedSessions
         self.selectedSession =
             sortedSessions.first
+    }
+
+    func updateSessions(
+        _ newSessions: [SessionHistory]
+    ) {
+        let sortedSessions = newSessions.sorted {
+            $0.startDate > $1.startDate
+        }
+
+        self.sessions = sortedSessions
+
+        if let selectedID = selectedSession?.id,
+           let stillThere = sortedSessions.first(where: { $0.id == selectedID }) {
+            self.selectedSession = stillThere
+        } else {
+            self.selectedSession = sortedSessions.first
+        }
     }
 
     var selectedDateText: String {

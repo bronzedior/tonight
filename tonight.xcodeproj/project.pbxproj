@@ -38,6 +38,9 @@
 		53921D322FFCA98900594BCE /* tonight watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 53921D282FFCA98800594BCE /* tonight watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		53CDFAB3300106EF000DA79C /* SDWebImageLottieCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 53CDFAB2300106EF000DA79C /* SDWebImageLottieCoder */; };
 		AA0000012FFCA98900594BCE /* RiskScoringEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5DE2FF63DF1002F1522 /* RiskScoringEngine.swift */; };
+		AA0000112FFCA98900594BCE /* SessionTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000102FFCA98900594BCE /* SessionTransfer.swift */; };
+		AA0000122FFCA98900594BCE /* SessionTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000102FFCA98900594BCE /* SessionTransfer.swift */; };
+		AA0000212FFCA98900594BCE /* SessionSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000202FFCA98900594BCE /* SessionSyncManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +100,8 @@
 		35B4A5CE2FF63D70002F1522 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		35B4A5DD2FF63DE2002F1522 /* RiskLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskLevel.swift; sourceTree = "<group>"; };
 		35B4A5DE2FF63DF1002F1522 /* RiskScoringEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskScoringEngine.swift; sourceTree = "<group>"; };
+		AA0000102FFCA98900594BCE /* SessionTransfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTransfer.swift; sourceTree = "<group>"; };
+		AA0000202FFCA98900594BCE /* SessionSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSyncManager.swift; sourceTree = "<group>"; };
 		53921D282FFCA98800594BCE /* tonight watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tonight watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -197,6 +202,7 @@
 		3561AB772FF63B3C00784181 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AA0000202FFCA98900594BCE /* SessionSyncManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -351,6 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				35B4A5DD2FF63DE2002F1522 /* RiskLevel.swift */,
+				AA0000102FFCA98900594BCE /* SessionTransfer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -487,6 +494,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0000112FFCA98900594BCE /* SessionTransfer.swift in Sources */,
+				AA0000212FFCA98900594BCE /* SessionSyncManager.swift in Sources */,
 				35B4A5C52FF63CCC002F1522 /* RootView.swift in Sources */,
 				35A57A0A3000C530002F9160 /* FactorChartMetrics.swift in Sources */,
 				35A57A0B3000C530002F9160 /* HistorySummaryHeader.swift in Sources */,
@@ -522,6 +531,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA0000012FFCA98900594BCE /* RiskScoringEngine.swift in Sources */,
+				AA0000122FFCA98900594BCE /* SessionTransfer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

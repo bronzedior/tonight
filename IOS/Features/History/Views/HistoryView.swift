@@ -10,6 +10,9 @@ struct HistoryView: View {
     @StateObject private var viewModel =
         HistoryViewModel()
 
+    @ObservedObject private var sync =
+        SessionSyncManager.shared
+
     @State private var scrollPosition: CGFloat = 0
 
     private enum Layout {
@@ -22,6 +25,9 @@ struct HistoryView: View {
     var body: some View {
         ZStack(alignment: .top) {
             pageBackground
+                .onReceive(sync.$sessions) { newSessions in
+                    viewModel.updateSessions(newSessions)
+                }
 
             historyScrollContent
                 .zIndex(
