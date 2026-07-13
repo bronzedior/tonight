@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WatchKit
 
 struct AllSetView: View {
     var body: some View {
@@ -16,6 +17,10 @@ struct AllSetView: View {
                 LottieAnimationView(fileName: "Checkmark")
                     .frame(width: 140, height: 140)
             }
+        }
+        .onAppear {
+            // Feedback selesai kalibrasi — haptic + bunyi khas watch (mirip notif).
+            WKInterfaceDevice.current().play(.success)
         }
     }
 }

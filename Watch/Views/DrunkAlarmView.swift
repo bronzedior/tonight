@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WatchKit
 
 struct DrunkAlarmView: View {
     @Binding var isPresented: Bool
@@ -20,6 +21,11 @@ struct DrunkAlarmView: View {
     @State var alarmCountdown: Int = 15
     @State var alarmTimer: Timer?
     @State var showEmergency = false
+
+    /// Timer yang mainin haptic berulang biar terasa "nyala terus".
+    @State var hapticTimer: Timer?
+    /// Jeda antar getaran (detik).
+    let hapticInterval: TimeInterval = 1.0
     
     var body: some View {
         ZStack {
@@ -73,12 +79,13 @@ struct DrunkAlarmView: View {
         .onAppear {
             alarmCountdown = alarmTimeout
             startAlarmTimer()
-            // TODO: Trigger haptic feedback (e.g. WKInterfaceDevice.current().play(.notification))
+            startHaptics()
             // TODO: Play alarm sound
         }
         .onDisappear {
             stopAlarmTimer()
             stopHoldTimer()
+            stopHaptics()
         }
         .fullScreenCover(isPresented: $showEmergency) {
             EmergencyCountdownView(isPresented: $showEmergency)
@@ -101,7 +108,7 @@ struct DrunkAlarmView: View {
                 // Successfully muted
                 stopHoldTimer()
                 stopAlarmTimer()
-                // TODO: Stop haptic/audio alarm
+                stopHaptics()
                 isPresented = false
             }
         }
@@ -126,6 +133,7 @@ struct DrunkAlarmView: View {
             alarmCountdown -= 1
             if alarmCountdown <= 0 {
                 stopAlarmTimer()
+                stopHaptics()          // berhenti biar nggak getar di balik layar Emergency
                 // No response — redirect to emergency
                 showEmergency = true
             }
@@ -135,6 +143,24 @@ struct DrunkAlarmView: View {
     func stopAlarmTimer() {
         alarmTimer?.invalidate()
         alarmTimer = nil
+    }
+
+    // MARK: - Continuous Haptic
+
+    /// Mulai getaran berulang biar alarm terasa terus-menerus.
+    /// watchOS nggak punya haptic "continuous", jadi kita ulang pola pendek
+    /// tiap `hapticInterval`.
+    func startHaptics() {
+        stopHaptics()                       // jaga-jaga biar nggak dobel timer
+        WKInterfaceDevice.current().play(.notification)
+        hapticTimer = Timer.scheduledTimer(withTimeInterval: hapticInterval, repeats: true) { _ in
+            WKInterfaceDevice.current().play(.notification)
+        }
+    }
+
+    func stopHaptics() {
+        hapticTimer?.invalidate()
+        hapticTimer = nil
     }
 }
 
