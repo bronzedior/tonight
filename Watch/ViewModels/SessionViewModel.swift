@@ -96,6 +96,13 @@ class SessionViewModel: ObservableObject {
     private var recentHeartRates: [Double] = []
     private let recentHeartRateWindow = 5
 
+    /// Riwayat impairment (= 100 - soberScore) selama sesi, buat timeline yang
+    /// dikirim ke iPhone saat sesi berakhir.
+    private var impairmentSamples: [(date: Date, score: Double, level: SoberLevel)] = []
+
+    /// Pengirim ringkasan sesi ke iPhone lewat WatchConnectivity.
+    private let phoneSender = WatchSessionSender.shared
+
     // MARK: - Session Control
 
     /// Mulai sesi monitoring baru.
@@ -111,6 +118,10 @@ class SessionViewModel: ObservableObject {
 
     /// Stop sesi monitoring.
     func stopSession() {
+        if let transfer = buildSessionTransfer() {
+            phoneSender.send(transfer)
+        }
+
         healthService.stopMonitoring()
         healthService.onNewHeartRate = nil
         healthService.onNewWalkingData = nil
@@ -126,6 +137,7 @@ class SessionViewModel: ObservableObject {
         awaitingBaselineHeartRate = false
         minuteHeartRates = [:]
         recentHeartRates = []
+        impairmentSamples = []
         heartRateReadings = []
         gaitReadings = []
         scoringMode = .stationary
@@ -155,6 +167,7 @@ class SessionViewModel: ObservableObject {
         awaitingBaselineHeartRate = false
         minuteHeartRates = [:]
         recentHeartRates = []
+        impairmentSamples = []
         heartRateReadings = []
         gaitReadings = []
 
@@ -301,7 +314,7 @@ class SessionViewModel: ObservableObject {
         let currentHR = smoothedHeartRate
         guard currentHR > 0 else { return }
 
-        // Saat stationary, gait sengaja dikirim nil supaya engine skor murni dari HR.
+        // Saat stationary, gait sengaja dikirim nil biar engine skor murni dari HR.
         let isWalking = scoringMode == .walking
 
         let result = RiskScoringEngine.calculateSoberScore(
@@ -315,6 +328,7 @@ class SessionViewModel: ObservableObject {
 
         soberScore = result.soberScore
         currentLevel = result.level
+        impairmentSamples.append((Date(), Double(result.riskScore), result.level))
         appendGaitReading(from: result)
     }
 
@@ -355,6 +369,111 @@ class SessionViewModel: ObservableObject {
             gaitReadings[index] = reading
         } else {
             gaitReadings.append(reading)
+        }
+    }
+
+    // MARK: - Private — Session Transfer (Watch → iPhone)
+
+    private func buildSessionTransfer() -> SessionTransfer? {
+        guard let start = sessionStartDate, !heartRateReadings.isEmpty else { return nil }
+        let end = Date()
+
+        // Heart rate: per-menit low/high → interval.
+        let hrSamples: [SessionTransfer.HeartRateInterval] = heartRateReadings.map { reading in
+            let segStart = start.addingTimeInterval(TimeInterval(reading.minuteOffset * 60))
+            return SessionTransfer.HeartRateInterval(
+                start: segStart,
+                end: segStart.addingTimeInterval(60),
+                minBPM: Double(reading.bpmLow),
+                maxBPM: Double(reading.bpmHigh)
+            )
+        }
+
+        // Body-gait stability points.
+        let gaitSamples: [SessionTransfer.GaitPoint] = gaitReadings.map { reading in
+            SessionTransfer.GaitPoint(
+                timestamp: start.addingTimeInterval(TimeInterval(reading.minuteOffset * 60)),
+                score: reading.stability
+            )
+        }
+
+        // Timeline: gabungkan sampel impairment berurutan yang levelnya sama.
+        let timeline = buildTimelineSegments(sessionEnd: end)
+
+        // Peak impairment.
+        let peak = impairmentSamples.max { $0.score < $1.score }
+        let peakScore = peak?.score ?? Double(100 - soberScore)
+        let peakLevel = Self.impairmentRaw(peak?.level ?? currentLevel)
+
+        // Averages.
+        let avgHR: Double = hrSamples.isEmpty
+            ? latestHeartRate
+            : hrSamples.map { ($0.minBPM + $0.maxBPM) / 2 }.reduce(0, +) / Double(hrSamples.count)
+        let avgStability: Double = gaitSamples.isEmpty
+            ? 100
+            : gaitSamples.map(\.score).reduce(0, +) / Double(gaitSamples.count)
+
+        return SessionTransfer(
+            id: UUID(),
+            startDate: start,
+            endDate: end,
+            peakImpairmentScore: peakScore,
+            peakLevel: peakLevel,
+            averageHeartRate: avgHR,
+            averageStability: avgStability,
+            heartRateSamples: hrSamples,
+            bodyGaitSamples: gaitSamples,
+            timeline: timeline
+        )
+    }
+
+    private func buildTimelineSegments(sessionEnd: Date) -> [SessionTransfer.TimelineSegment] {
+        guard let first = impairmentSamples.first else {
+            guard let start = sessionStartDate else { return [] }
+            return [SessionTransfer.TimelineSegment(
+                start: start,
+                end: sessionEnd,
+                impairmentScore: Double(100 - soberScore),
+                level: Self.impairmentRaw(currentLevel)
+            )]
+        }
+
+        var segments: [SessionTransfer.TimelineSegment] = []
+        var segStart = first.date
+        var segLevel = first.level
+        var segPeak = first.score
+
+        for sample in impairmentSamples.dropFirst() {
+            if sample.level == segLevel {
+                segPeak = max(segPeak, sample.score)
+            } else {
+                segments.append(SessionTransfer.TimelineSegment(
+                    start: segStart,
+                    end: sample.date,
+                    impairmentScore: segPeak,
+                    level: Self.impairmentRaw(segLevel)
+                ))
+                segStart = sample.date
+                segLevel = sample.level
+                segPeak = sample.score
+            }
+        }
+
+        segments.append(SessionTransfer.TimelineSegment(
+            start: segStart,
+            end: sessionEnd,
+            impairmentScore: segPeak,
+            level: Self.impairmentRaw(segLevel)
+        ))
+        return segments
+    }
+
+    private static func impairmentRaw(_ level: SoberLevel) -> String {
+        switch level {
+        case .sober: return "sober"
+        case .ok:    return "ok"
+        case .tipsy: return "tipsy"
+        case .drunk: return "drunk"
         }
     }
 }

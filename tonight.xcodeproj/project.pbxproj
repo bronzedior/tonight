@@ -38,6 +38,9 @@
 		53921D322FFCA98900594BCE /* tonight watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 53921D282FFCA98800594BCE /* tonight watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		53CDFAB3300106EF000DA79C /* SDWebImageLottieCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 53CDFAB2300106EF000DA79C /* SDWebImageLottieCoder */; };
 		AA0000012FFCA98900594BCE /* RiskScoringEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4A5DE2FF63DF1002F1522 /* RiskScoringEngine.swift */; };
+		AA0000112FFCA98900594BCE /* SessionTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000102FFCA98900594BCE /* SessionTransfer.swift */; };
+		AA0000122FFCA98900594BCE /* SessionTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000102FFCA98900594BCE /* SessionTransfer.swift */; };
+		AA0000212FFCA98900594BCE /* SessionSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000202FFCA98900594BCE /* SessionSyncManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +101,8 @@
 		35B4A5DD2FF63DE2002F1522 /* RiskLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskLevel.swift; sourceTree = "<group>"; };
 		35B4A5DE2FF63DF1002F1522 /* RiskScoringEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskScoringEngine.swift; sourceTree = "<group>"; };
 		53921D282FFCA98800594BCE /* tonight watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tonight watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000102FFCA98900594BCE /* SessionTransfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTransfer.swift; sourceTree = "<group>"; };
+		AA0000202FFCA98900594BCE /* SessionSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSyncManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -197,6 +202,7 @@
 		3561AB772FF63B3C00784181 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AA0000202FFCA98900594BCE /* SessionSyncManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -351,6 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				35B4A5DD2FF63DE2002F1522 /* RiskLevel.swift */,
+				AA0000102FFCA98900594BCE /* SessionTransfer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -487,6 +494,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0000112FFCA98900594BCE /* SessionTransfer.swift in Sources */,
+				AA0000212FFCA98900594BCE /* SessionSyncManager.swift in Sources */,
 				35B4A5C52FF63CCC002F1522 /* RootView.swift in Sources */,
 				35A57A0A3000C530002F9160 /* FactorChartMetrics.swift in Sources */,
 				35A57A0B3000C530002F9160 /* HistorySummaryHeader.swift in Sources */,
@@ -522,6 +531,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA0000012FFCA98900594BCE /* RiskScoringEngine.swift in Sources */,
+				AA0000122FFCA98900594BCE /* SessionTransfer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,7 +675,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 47T6L682CY;
+				DEVELOPMENT_TEAM = RLW5ZZNWUT;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -688,7 +698,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight;
+				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -713,7 +723,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = RLW5ZZNWUT;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -736,7 +746,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight;
+				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -757,22 +767,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = tonight_watch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 47T6L682CY;
+				DEVELOPMENT_TEAM = RLW5ZZNWUT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "tonight watch";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Tonight uses your heart rate and walking metrics to estimate your impairment level while drinking.";
 				INFOPLIST_KEY_NSMotionUsageDescription = "Tonight uses motion activity to tell whether you're standing still or walking, so it can score your gait accordingly.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = Bronzedior.tonight;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = Bronzedior.tonight1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight1.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -792,22 +803,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = tonight_watch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = RLW5ZZNWUT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "tonight watch";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Tonight uses your heart rate and walking metrics to estimate your impairment level while drinking.";
 				INFOPLIST_KEY_NSMotionUsageDescription = "Tonight uses motion activity to tell whether you're standing still or walking, so it can score your gait accordingly.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = Bronzedior.tonight;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = Bronzedior.tonight1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight1.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
