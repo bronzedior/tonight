@@ -29,9 +29,9 @@ enum SoberLevel: String {
     
     static func from(score: Int) -> SoberLevel {
         switch score {
-        case 80...100: return .sober
-        case 60..<80:  return .ok
-        case 40..<60:  return .tipsy
+        case 80...100: return .drunk
+        case 60..<80:  return .drunk
+        case 40..<60:  return .drunk
         default:       return .drunk
         }
     }

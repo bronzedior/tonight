@@ -698,7 +698,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight1;
+				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -746,7 +746,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight1;
+				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -777,13 +777,13 @@
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Tonight uses your heart rate and walking metrics to estimate your impairment level while drinking.";
 				INFOPLIST_KEY_NSMotionUsageDescription = "Tonight uses motion activity to tell whether you're standing still or walking, so it can score your gait accordingly.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = Bronzedior.tonight1;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = Bronzedior.tonight4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight1.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight4.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -813,13 +813,13 @@
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Tonight uses your heart rate and walking metrics to estimate your impairment level while drinking.";
 				INFOPLIST_KEY_NSMotionUsageDescription = "Tonight uses motion activity to tell whether you're standing still or walking, so it can score your gait accordingly.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = Bronzedior.tonight1;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = Bronzedior.tonight4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight1.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = Bronzedior.tonight4.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;

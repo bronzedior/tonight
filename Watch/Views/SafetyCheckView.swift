@@ -6,14 +6,19 @@
 //
 
 import SwiftUI
+import WatchKit
 
 struct SafetyCheckView: View {
     @Binding var isPresented: Bool
-    
+
     @State var showEmergency = false
     @State var showDrunkAlarm = false
     @State var responseTimer: Timer?
-    
+
+    /// Timer getaran berulang biar user sadar ada pertanyaan yang harus dijawab.
+    @State var hapticTimer: Timer?
+    let hapticInterval: TimeInterval = 2.0
+
     // TODO: Replace with configurable timeout from settings
     let responseTimeout: TimeInterval = 15
     
@@ -33,6 +38,7 @@ struct SafetyCheckView: View {
                 // I'm Fine — dismiss safety check, return to SoberScoreView
                 Button {
                     stopResponseTimer()
+                    stopHaptics()
                     isPresented = false
                 } label: {
                     Text("I'm Fine")
@@ -48,6 +54,7 @@ struct SafetyCheckView: View {
                 // Get Help — show emergency countdown
                 Button {
                     stopResponseTimer()
+                    stopHaptics()
                     showEmergency = true
                 } label: {
                     Text("Get Help")
@@ -66,9 +73,11 @@ struct SafetyCheckView: View {
         .toolbar(.hidden)
         .onAppear {
             startResponseTimer()
+            startHaptics()
         }
         .onDisappear {
             stopResponseTimer()
+            stopHaptics()
         }
         // No response timeout → DrunkAlarm
         .fullScreenCover(isPresented: $showDrunkAlarm) {
@@ -97,13 +106,29 @@ struct SafetyCheckView: View {
     func startResponseTimer() {
         // TODO: Replace with actual sober level monitoring / inactivity detection
         responseTimer = Timer.scheduledTimer(withTimeInterval: responseTimeout, repeats: false) { _ in
+            stopHaptics()          // berhenti biar nggak getar di balik DrunkAlarm
             showDrunkAlarm = true
         }
     }
-    
+
     func stopResponseTimer() {
         responseTimer?.invalidate()
         responseTimer = nil
+    }
+
+    // MARK: - Continuous Haptic (tiap 2 detik)
+
+    func startHaptics() {
+        stopHaptics()
+        WKInterfaceDevice.current().play(.notification)
+        hapticTimer = Timer.scheduledTimer(withTimeInterval: hapticInterval, repeats: true) { _ in
+            WKInterfaceDevice.current().play(.notification)
+        }
+    }
+
+    func stopHaptics() {
+        hapticTimer?.invalidate()
+        hapticTimer = nil
     }
 }
 

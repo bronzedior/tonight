@@ -80,12 +80,13 @@ struct DrunkAlarmView: View {
             alarmCountdown = alarmTimeout
             startAlarmTimer()
             startHaptics()
-            // TODO: Play alarm sound
+            AlarmAudio.shared.start()      // suara alarm keras (looping)
         }
         .onDisappear {
             stopAlarmTimer()
             stopHoldTimer()
             stopHaptics()
+            AlarmAudio.shared.stop()
         }
         .fullScreenCover(isPresented: $showEmergency) {
             EmergencyCountdownView(isPresented: $showEmergency)
@@ -109,6 +110,7 @@ struct DrunkAlarmView: View {
                 stopHoldTimer()
                 stopAlarmTimer()
                 stopHaptics()
+                AlarmAudio.shared.stop()
                 isPresented = false
             }
         }
@@ -134,6 +136,7 @@ struct DrunkAlarmView: View {
             if alarmCountdown <= 0 {
                 stopAlarmTimer()
                 stopHaptics()          // berhenti biar nggak getar di balik layar Emergency
+                AlarmAudio.shared.stop()
                 // No response — redirect to emergency
                 showEmergency = true
             }
@@ -152,9 +155,9 @@ struct DrunkAlarmView: View {
     /// tiap `hapticInterval`.
     func startHaptics() {
         stopHaptics()                       // jaga-jaga biar nggak dobel timer
-        WKInterfaceDevice.current().play(.notification)
+        WKInterfaceDevice.current().play(.failure)   // pola paling kuat/urgen
         hapticTimer = Timer.scheduledTimer(withTimeInterval: hapticInterval, repeats: true) { _ in
-            WKInterfaceDevice.current().play(.notification)
+            WKInterfaceDevice.current().play(.failure)
         }
     }
 
